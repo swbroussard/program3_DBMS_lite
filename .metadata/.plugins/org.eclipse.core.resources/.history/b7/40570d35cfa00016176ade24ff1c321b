@@ -21,12 +21,7 @@ import java.sql.*;
  | Deficiencies: none as of right now
  *=======================================================================*/
 public class Prog3 {
-	private static SQLCommandLibrary comd = new SQLCommandLibrary();
-	
-	private static void createTables(String fileName, Statement stat) {
-		
-	}
-	
+
 	public static void main(String[] vars) {
 		Connection dbConnection = null;
 		Statement stat = null;
@@ -40,7 +35,7 @@ public class Prog3 {
 			System.exit(-1);
 		}
 		
-		//connect to the Oracle server
+		//TODO: connect to the Oracle server
 		try {
 			dbConnection = DriverManager.getConnection(
 				           "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle"
@@ -52,7 +47,6 @@ public class Prog3 {
 			System.exit(-1);
 		}
 		
-		//creates SQL statement query object
 		try {
 			stat = dbConnection.createStatement();
 		}
@@ -62,10 +56,27 @@ public class Prog3 {
 			System.exit(-1);
 		}
 		
-		//TODO: Make the tables one at a time and 
-		//      use grant command for visibility of tables for each one
+		try {
+			answer = stat.executeQuery("select * from mccann.species");
+		}
+		catch(SQLException s) {
+			System.out.println("Statement Fail.");
+			System.exit(-1);
+		}
+		try {
+			if (answer.next() == true) {
+				System.out.println(answer.getString("sname"));
+			}
+		}
+		catch(SQLException s) {
+			System.out.println("Sent statement failed.");
+			System.exit(-1);
+		}
 		
-		createTables("", stat);
+		//TODO: turn on autocommit, do this in the oracle itself
+		
+		//TODO: Make the tables one at a time
+		//TODO: use grant command for visibility of tables for each one
 		
 		//TODO: make user input scanner
 		//TODO: choice one: for each of the school yearss and the different percentages,

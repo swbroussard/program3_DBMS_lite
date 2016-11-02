@@ -28,7 +28,7 @@
 
 public class SQLCommandLibrary {
 //TODO: Make command methods for the SQL commands
-public String createTable(String fileName) {
+public String createTables(String fileName) {
 	String createATable = "create table " + fileName + "("
 			              + "distNum   integer,\n"
 			              + "schoolNum integer,\n"

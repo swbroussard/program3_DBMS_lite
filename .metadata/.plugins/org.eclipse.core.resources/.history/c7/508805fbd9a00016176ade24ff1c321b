@@ -21,12 +21,7 @@ import java.sql.*;
  | Deficiencies: none as of right now
  *=======================================================================*/
 public class Prog3 {
-	private static SQLCommandLibrary comd = new SQLCommandLibrary();
-	
-	private static void createTables(String fileName, Statement stat) {
-		
-	}
-	
+
 	public static void main(String[] vars) {
 		Connection dbConnection = null;
 		Statement stat = null;
@@ -52,7 +47,7 @@ public class Prog3 {
 			System.exit(-1);
 		}
 		
-		//creates SQL statement query object
+		//creates SQL statement query
 		try {
 			stat = dbConnection.createStatement();
 		}
@@ -65,7 +60,7 @@ public class Prog3 {
 		//TODO: Make the tables one at a time and 
 		//      use grant command for visibility of tables for each one
 		
-		createTables("", stat);
+		createTables(, )
 		
 		//TODO: make user input scanner
 		//TODO: choice one: for each of the school yearss and the different percentages,

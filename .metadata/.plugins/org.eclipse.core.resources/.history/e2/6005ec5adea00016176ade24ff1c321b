@@ -23,10 +23,6 @@ import java.sql.*;
 public class Prog3 {
 	private static SQLCommandLibrary comd = new SQLCommandLibrary();
 	
-	private static void createTables(String fileName, Statement stat) {
-		
-	}
-	
 	public static void main(String[] vars) {
 		Connection dbConnection = null;
 		Statement stat = null;
@@ -65,7 +61,7 @@ public class Prog3 {
 		//TODO: Make the tables one at a time and 
 		//      use grant command for visibility of tables for each one
 		
-		createTables("", stat);
+		comd.createTables("");
 		
 		//TODO: make user input scanner
 		//TODO: choice one: for each of the school yearss and the different percentages,
