@@ -1,0 +1,184 @@
+import java.io.*;
+import java.util.Scanner;
+
+/*+----------------------------------------------------------------------
+ ||
+ ||  Class: clean_WRCT_files
+ ||
+ ||         Author: Steven Broussard (stevenwbroussard@email.arizona.edu)
+ ||
+ ||        Purpose: Cleaning up the WRCT data sheets for use in the oracle database.
+ ||                 Inputting NULLs where there is a blank space in an field or '--'
+ ||                 in the field or a "*" in the field. 
+ ||
+ ||  Inherits From: none
+ ||
+ ||     Interfaces: none
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||      Constants: none
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||   Constructors: none
+ ||
+ ||  Class Methods: changeFileName
+ ||                 isCleanExist
+ ||                 cleanOrgCSVFile              
+ ||
+ ||  Inst. Methods: none
+ ||
+ ++-----------------------------------------------------------------------*/
+
+public class clean_WRCT_files {
+	/*---------------------------------------------------------------------
+    |  Method: changeFileName
+    |
+    |  Purpose: Change the original file name to original file name plus _clean.csv
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters: String orgFile - name of original file
+    |
+    |  Returns: String
+    *-------------------------------------------------------------------*/
+	private static String changeFileName(String orgFile) {
+		String [] dirArray = null;
+		String fileName = "";
+		String [] prePostFix = null;
+		String justFileName = "";
+		String addClean = "";
+		String dirPath = "";
+		
+		dirArray = orgFile.split("\\/");
+		fileName = dirArray[dirArray.length - 1];
+		
+		for (int i = 0; i < dirArray.length - 1; i++) {
+			dirPath = dirPath + dirArray[i] + "/";
+		}
+		
+		prePostFix = fileName.split("\\.");
+		justFileName = prePostFix[0];
+		addClean = dirPath + justFileName + "_clean.csv";
+
+		return addClean;
+	}
+	
+	/*---------------------------------------------------------------------
+    |  Method: isCleanExist
+    |
+    |  Purpose: Checks if the clean CSV file exist, 
+    |           if so deletes it and recreate the clean file
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters: File cleanFile - file instance for clean file
+    |
+    |  Returns: none
+    *-------------------------------------------------------------------*/
+	private static void isCleanExist(File cleanFile){
+		try {
+			if (cleanFile.exists()) {
+				System.out.println("Deleting existing file.");
+				cleanFile.delete();
+				cleanFile.createNewFile();
+			}
+			else {
+				cleanFile.createNewFile();
+				System.out.println("the file was newly created.");
+			}
+		}
+		catch(IOException e) {
+			System.out.println("File path does not exist.");
+			e.printStackTrace();
+		}
+	}
+	
+	/*---------------------------------------------------------------------
+    |  Method: cleanOrgCSVFile
+    |
+    |  Purpose: Adds in NULLs for blank space, '--', and '*'
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters: File orgFile - file instance of original CSV file 
+    |                             to read the data line by line
+    |              RandomAccessFile cleanThread - thread instance of clean file 
+    |                                             to write in the file
+    |
+    |  Returns: none
+    *-------------------------------------------------------------------*/
+	private static void cleanOrgCSVFile(File orgFile
+			                            , RandomAccessFile cleanThread) throws IOException{
+		String lineFromOrgFile = "";
+		String[] separateElements = null;
+		Scanner scanFile = null;
+		int size = 0;
+		
+		scanFile = new Scanner(orgFile);
+		
+		//reads in the whole file one line at a time
+		while (scanFile.hasNextLine() == true) {
+		
+			lineFromOrgFile = scanFile.nextLine();
+			
+			//split the line string by comma
+			separateElements = lineFromOrgFile.split("\\,");
+			size = separateElements.length;
+		
+			//read each element in line string array
+			for (int i = 0; i < size; i++) {
+				//if element is "", "*", or "--", then replace with NULL
+				//otherwise write the string in the document
+			
+				if (separateElements[i].equals("")
+					|| separateElements[i].equals("--")
+					|| separateElements[i].equals("*")) {		
+					separateElements[i] = "NULL";
+				}
+			}
+			//loop through the array from 0 to n - 1 with commas and write the last one
+			// with a return character
+			for (int j = 0; j < size - 2; j++) {
+				cleanThread.writeBytes(separateElements[j] + ",");
+			}
+			cleanThread.writeBytes(separateElements[size - 1] + '\n');
+			}
+		scanFile.close();
+	}
+	
+	public static void main(String args[]) throws IOException{
+	String orgFile = "";
+	String cleanFile = "";
+	File orgCSV = null;
+	File cleanCSV = null;
+	RandomAccessFile cleanThread = null;
+	
+	//make string title for clean CSV file
+	orgFile = args[0];
+	cleanFile = changeFileName(orgFile);
+	
+	//make file instance of original and clean CSV files	
+	orgCSV = new File(orgFile);
+	cleanCSV = new File(cleanFile);
+	
+	//check if clean CSV file exist, if so delete it
+	isCleanExist(cleanCSV);
+	
+	//make instance of Random Access File thread of clean CSV file
+	//orgThread = new RandomAccessFile(orgCSV, "r");
+	cleanThread = new RandomAccessFile(cleanCSV, "rw");
+	
+	//start the cleaning process of the CSV files
+	cleanOrgCSVFile(orgCSV, cleanThread);
+	
+	cleanThread.close();
+	}
+}

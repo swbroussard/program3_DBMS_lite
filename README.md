@@ -1,0 +1,2 @@
+The program is like a lite version of a DBMS with a view and creates tables from clean csv files.
+The csv clean files were from the Wisconcin Reading comprehension Test site from Wisconcin Education Department.

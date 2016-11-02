@@ -1,0 +1,74 @@
+import java.sql.*;
+
+/*=========================================================================
+ |   Assignment:  Program #3: JDBC  
+ |       Author: Steven Broussard (stevenwbroussard@email.arizona.edu)
+ |       Grader: Zhenge Zhoa 
+ |
+ |       Course: CSC 460
+ |   Instructor: L. McCann
+ |     Due Date: November 3, 2016 12:29PM
+ |
+ |  Description: Using the cleaned up csv files; connects to the oracle database
+ |               server, create the tables from the cleaned csv files using
+ |               SQL commands, and have a user interface or view with a few
+ |               query questions parents might be interested to know about
+ |               the schools.
+ |
+ |     Language: Java JE 1.8
+ | Ex. Packages: 
+ |                
+ | Deficiencies: none as of right now
+ *=======================================================================*/
+public class Prog3 {
+
+	public static void main(String[] vars) {
+		Connection dbConnection = null;
+		Statement stat = null;
+		ResultSet answer = null;
+		
+		//TODO: connect to the Oracle server
+		try {
+			dbConnection = DriverManager.getConnection(
+				           "jdbc.oracle:thin:stevenwbroussard@oracle.aloe.com:1234:oracle"
+				           ,"stevenwbroussard", "a2117");
+		}
+		catch(SQLException s) {
+			System.out.println("Connection Failed.");
+			s.printStackTrace();
+			System.exit(-1);
+		}
+		
+		try {
+			stat = dbConnection.createStatement();
+		}
+		catch(SQLException s) {
+			System.out.println("Making SQL Statement Failed.");
+			s.printStackTrace();
+			System.exit(-1);
+		}
+		
+		try {
+			answer = stat.executeQuery("select * from mccann.fish;");
+		}
+		catch(SQLException s) {
+			System.out.println("Statement Fail.");
+			System.exit(-1);
+		}
+		
+		
+		//TODO: turn on autocommit, do this in the oracle itself
+		
+		//TODO: Make the tables one at a time
+		//TODO: use grant command for visibility of tables for each one
+		
+		//TODO: make user input scanner
+		//TODO: choice one: for each of the school yearss and the different percentages,
+		//      list the top 5 highest percentage school in descending order.
+		//TODO: choice two: Given each school during the four years; list if the
+		//      not tested percentage trend is strictly increasing, decreasing, or neither.
+		//TODO: choice three: for each school during the four years; show by average amount
+		//      of strictly increasing, decreasing, or about balanced.
+	}
+	
+}

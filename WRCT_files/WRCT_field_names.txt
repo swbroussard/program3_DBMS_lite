@@ -1,0 +1,1 @@
+﻿DistNumb (integer 0),SchlNumb (integer 1),District Name (String 2),School Name (String 3),Total No. Enrolled (integer 4),No. Not Tested (integer 5),% Not Tested(float 6),No. Minimal (integer 7),% Minimal (float 8),No. Basic (integer 9),% Basic (float 10),No. Proficient (integer 11),% Proficient (float 12),No. Advanced (integer 13),% Advanced (float 15)
