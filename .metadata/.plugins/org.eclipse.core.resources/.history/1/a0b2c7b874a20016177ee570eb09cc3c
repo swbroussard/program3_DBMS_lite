@@ -125,13 +125,10 @@ public class SQLCommandLibrary {
 			             double perPro,
 			             int numAdv,
 			             double perAdv) {
-		
-		System.out.println("tableName = " + tableName);
-		System.exit(0);
 		String insertRow = "insert into " + tableName + " values (" + distNum + "," 
-			                                                        + schlNum 
-			                                                        + ",'" + distName + "'," 
-			                                                        + "'" + schlName + "'," 
+			                                                        + schlNum + ",'" 
+				                                                    + distName + "','" 
+			                                                        + schlName + "'," 
 				                                                    + totNum + ","
 				                                                    + numNoTested + ","
 				                                                    + perNotTested + ","
