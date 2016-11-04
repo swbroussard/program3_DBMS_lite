@@ -37,7 +37,7 @@ public class createPopulateTable {
 	/*---------------------------------------------------------------------
     |  Method: extractName
     |
-    |  Purpose: extract the name with out the .csv and '_clean'
+    |  Purpose: extract the name of from the file object into a string array
     |
     |  Pre-condition: none
     |
@@ -56,7 +56,7 @@ public class createPopulateTable {
 		for (int i = 0; i < 4; i++) {
 			file = fileNames[i].split("\\/");
 			fileName = file[file.length - 1];
-			name = fileName.substring(0, fileName.length() - 10);
+			name = fileName.substring(0, fileName.length() - 4);
 			nameOfFiles[i] = name;
 		}
 		
@@ -78,11 +78,11 @@ public class createPopulateTable {
     |
     |  Returns: String
     *-------------------------------------------------------------------*/
-	private static void createTables(String tableNames, Statement stat) {
+	private static void createTables(String[] fileName, Statement stat) {
 		
 		//creates a table with the name of the file
 		try {
-			stat.executeQuery(comd.createTable("stevenwbroussard." + tableNames));
+			stat.executeQuery(comd.createTable("stevenwbroussard." + fileName[0].substring(0, fileName[0].length() - 6)));
 		}
 		catch(SQLException s) {
 			System.out.println("CREATE Statement Failed.");
@@ -113,7 +113,7 @@ public class createPopulateTable {
 		String line = "";
 		String[] splitLine = null;
 		
-		tableName = "stevenwbroussard." + name;
+		tableName = "stevenwbroussard." + name.substring(0, name.length() - 6);
 		try {
 			scan = new Scanner(fileObj);
 		}
@@ -124,8 +124,8 @@ public class createPopulateTable {
 		}
 		
 		//use a for loop to go through, later use a while loop
-		while (scan.hasNext() != false) {
-		//for (int i = 0; i < 10; i++) {
+		//while (scan.hasNext() != false) {
+		for (int i = 0; i < 10; i++) {
 			line = scan.nextLine();
 			splitLine = line.split("\\,");
 			
@@ -203,23 +203,16 @@ public class createPopulateTable {
 			System.exit(-1);
 		}
 		
-		//Make the tables one at a time and 
-		//use grant command for visibility of tables for each one
-		//This will be done in the for loop over the set of file names
-		//with out all the post fix format and path to the file
-		for (int j = 0; j < 4; j++) {
-			createTables(names[j], stat);
-		}
+		//TODO: Make the tables one at a time and 
+		//      use grant command for visibility of tables for each one
+		//      This will be done in the for loop over the set of file names
+		//      with out all the post fix format and path to the filey67
+		createTables(names, stat);
 		
-		//populate the table with the information from the csv file
-		for (int i = 0; i < 4; i++) {
-			populateTable(names[i], fileSet[i], stat);
-		}
-		
-		//granting public access to the tables
-		for (int m = 0; m < 4; m++) {
-			comd.grantTable("stevenwbroussard." + names[m]);
-		}
+		//TODO: populate the table with the information from the csv file
+		//for (int i = 0; i < 4; i++) {
+		populateTable(names[0], fileSet[0], stat);
+		//}
 		
 	}
 

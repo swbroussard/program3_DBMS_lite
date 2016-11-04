@@ -143,23 +143,4 @@ public class SQLCommandLibrary {
 		
 		return insertRow;
 	}
-	
-	/*---------------------------------------------------------------------
-    |  Method: deleteTable
-    |
-    |  Purpose: delete the input table name and its contents
-    |
-    |  Pre-condition: none
-    |
-    |  Post-condition: none
-    |
-    |  Parameters: String tableName - name of the table to drop
-    |
-    |  Returns: String
-    *-------------------------------------------------------------------*/
-	public String deleteTable(String tableName) {
-		String dropTable = "drop table " + tableName;
-		
-		return dropTable;
-	}
 }
