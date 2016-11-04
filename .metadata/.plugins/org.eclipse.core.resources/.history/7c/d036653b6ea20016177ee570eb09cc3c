@@ -207,7 +207,7 @@ public class createPopulateTable {
 		//      use grant command for visibility of tables for each one
 		//      This will be done in the for loop over the set of file names
 		//      with out all the post fix format and path to the filey67
-		createTables(names, stat);
+		//createTables(names, stat);
 		
 		//TODO: populate the table with the information from the csv file
 		//for (int i = 0; i < 4; i++) {

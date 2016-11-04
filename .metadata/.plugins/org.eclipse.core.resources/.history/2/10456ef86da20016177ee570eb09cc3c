@@ -96,7 +96,6 @@ public class SQLCommandLibrary {
     |              String distName - name of school district column
     |              String schlName - school name column
     |              int totNum - total number of students enolled at school
-    |              int numNoTested - number of student not tested
     |              double perNotTested - percentage of students not tested
     |              int numMin - number of student took minimum test
     |              double perMin - percentage of student passed minimum test
@@ -115,7 +114,6 @@ public class SQLCommandLibrary {
 			             String distName,
 			             String schlName,
 			             int totNum,
-			             int numNoTested,
 			             double perNotTested,
 			             int numMin,
 			             double perMin,
@@ -130,7 +128,6 @@ public class SQLCommandLibrary {
 				                                                    + distName + "','" 
 			                                                        + schlName + "'," 
 				                                                    + totNum + ","
-				                                                    + numNoTested + ","
 				                                                    + perNotTested + ","
 				                                                    + numMin + ","
 				                                                    + perMin + ","
