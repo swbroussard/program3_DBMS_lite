@@ -57,7 +57,7 @@ public class SQLCommandLibrary {
 			              + "numPro    integer,"
 			              + "perPro    float,"
 			              + "numAdvan  integer,"
-			              + "perAdvan  float"
+			              + "perAdvan  float,"
 			              + ")";
 		return createATable;
 	}

@@ -33,7 +33,6 @@ public class Prog3 {
 		}
 		catch(ClassNotFoundException c) {
 			System.out.println("Can not find Class Driver.");
-			c.printStackTrace();
 			System.exit(-1);
 		}
 		

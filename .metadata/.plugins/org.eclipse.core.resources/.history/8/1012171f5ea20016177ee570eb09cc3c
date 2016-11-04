@@ -130,7 +130,7 @@ public class createPopulateTable {
 			splitLine = line.split("\\,");
 			
 			try {
-				stat.executeQuery(comd.insert(tableName, 
+				stat.executeUpdate(comd.insert(tableName, 
 					    	                   Integer.parseInt(splitLine[0]), 
 					    	                   Integer.parseInt(splitLine[1]), 
 					    	                   splitLine[2], 
@@ -176,7 +176,6 @@ public class createPopulateTable {
 		}
 		catch(ClassNotFoundException c) {
 			System.out.println("Can not find Class Driver.");
-			c.printStackTrace();
 			System.exit(-1);
 		}
 		

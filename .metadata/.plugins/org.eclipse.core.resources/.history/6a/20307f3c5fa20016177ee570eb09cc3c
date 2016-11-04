@@ -176,9 +176,11 @@ public class createPopulateTable {
 		}
 		catch(ClassNotFoundException c) {
 			System.out.println("Can not find Class Driver.");
-			c.printStackTrace();
 			System.exit(-1);
 		}
+		
+		System.out.println(comd.createTable("hello"));
+		System.exit(0);
 		
 		//connect to the Oracle server
 		try {

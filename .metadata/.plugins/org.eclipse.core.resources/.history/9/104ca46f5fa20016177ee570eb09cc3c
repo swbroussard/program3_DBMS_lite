@@ -43,7 +43,7 @@ public class SQLCommandLibrary {
     |  Returns: String
     *-------------------------------------------------------------------*/
 	public String createTable(String fileName) {
-		String createATable = "create table " + fileName + " ("
+		String createATable = "create table " + fileName + "("
 			              + "distNum   integer,"
 			              + "schoolNum integer,"
 			              + "distName  varchar2(30),"
@@ -57,7 +57,7 @@ public class SQLCommandLibrary {
 			              + "numPro    integer,"
 			              + "perPro    float,"
 			              + "numAdvan  integer,"
-			              + "perAdvan  float"
+			              + "perAdvan  float,"
 			              + ")";
 		return createATable;
 	}
