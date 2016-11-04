@@ -125,7 +125,6 @@ public class SQLCommandLibrary {
 			             double perPro,
 			             int numAdv,
 			             double perAdv) {
-		
 		String insertRow = "insert into " + tableName + " values (" + distNum + "," 
 			                                                        + schlNum 
 			                                                        + ",'" + distName + "'," 

@@ -129,49 +129,6 @@ public class createPopulateTable {
 			line = scan.nextLine();
 			splitLine = line.split("\\,");
 			
-			//if the type for integer column is NULL
-			if (splitLine[0].equals("NULL")) {
-				splitLine[0] = "0";
-			}
-			if (splitLine[1].equals("NULL")) {
-				splitLine[1] = "0";
-			}
-			if (splitLine[4].equals("NULL")) {
-				splitLine[4] = "0";
-			}
-			if (splitLine[5].equals("NULL")) {
-				splitLine[5] = "0";
-			}
-			if (splitLine[7].equals("NULL")) {
-				splitLine[7] = "0";
-			}
-			if (splitLine[9].equals("NULL")) {
-				splitLine[9] = "0";
-			}
-			if (splitLine[11].equals("NULL")) {
-				splitLine[11] = "0";
-			}
-			if (splitLine[13].equals("NULL")) {
-				splitLine[13] = "0";
-			}
-			
-			//if the type for double column is NULL
-			if (splitLine[6].equals("NULL")) {
-				splitLine[6] = "0.0";
-			}
-			if (splitLine[8].equals("NULL")) {
-				splitLine[8] = "0.0";
-			}
-			if (splitLine[10].equals("NULL")) {
-				splitLine[10] = "0.0";
-			}
-			if (splitLine[12].equals("NULL")) {
-				splitLine[12] = "0.0";
-			}
-			if (splitLine[14].equals("NULL")) {
-				splitLine[14] = "0.0";
-			}
-			
 			try {
 				stat.executeQuery(comd.insert(tableName, 
 					    	                   Integer.parseInt(splitLine[0]), 
