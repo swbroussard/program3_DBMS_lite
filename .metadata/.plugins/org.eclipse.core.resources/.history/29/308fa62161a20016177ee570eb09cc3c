@@ -80,9 +80,6 @@ public class createPopulateTable {
     *-------------------------------------------------------------------*/
 	private static void createTables(String[] fileName, Statement stat) {
 		
-		System.out.println("stevenwbroussard." + fileName[0].substring(0, fileName[0].length() - 6));
-		System.exit(0);
-		
 		//creates a table with the name of the file
 		try {
 			stat.executeQuery(comd.createTable("stevenwbroussard." + fileName[0].substring(0, fileName[0].length() - 6)));
