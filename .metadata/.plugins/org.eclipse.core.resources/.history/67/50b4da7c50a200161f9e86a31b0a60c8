@@ -62,8 +62,9 @@ public class createPopulateTable {
 		
 		for (int j = 0; j < 4; j++) {
 			System.out.println(nameOfFiles[j]);
+			System.exit(0);
 		}
-		System.exit(0);
+		
 		return nameOfFiles;
 	}
 		
