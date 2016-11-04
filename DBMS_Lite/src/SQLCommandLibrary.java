@@ -20,16 +20,30 @@
  ||
  ||   Constructors: none
  ||
- ||  Class Methods: 
+ ||  Class Methods: createTable
+ ||                 grantTable
+ ||                 insert
  ||
- ||  Inst. Methods: 
+ ||  Inst. Methods: none
  ||
  ++-----------------------------------------------------------------------*/
 
 public class SQLCommandLibrary {
-//TODO: Make command methods for the SQL commands
-public String createTable(String fileName) {
-	String createATable = "create table " + fileName + "("
+	/*---------------------------------------------------------------------
+    |  Method: createTable
+    |
+    |  Purpose: string that represent SQL statement to create a table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters: String fileName - name of the table
+    |
+    |  Returns: String
+    *-------------------------------------------------------------------*/
+	public String createTable(String fileName) {
+		String createATable = "create table " + "stevenwbroussard."+ fileName + "("
 			              + "distNum   integer,\n"
 			              + "schoolNum integer,\n"
 			              + "distName  varchar2(30),\n"
@@ -45,7 +59,84 @@ public String createTable(String fileName) {
 			              + "numAdvan  integer,\n"
 			              + "perAdvan  float,\n"
 			              + ")";
-	return createATable;
-}
-//TODO: Make command methods of SQL queries
+		return createATable;
+	}
+	
+	/*---------------------------------------------------------------------
+    |  Method: grantTable
+    |
+    |  Purpose: grants public access to the table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters: String tableName - name of the table in Oracle database
+    |
+    |  Returns: String
+    *-------------------------------------------------------------------*/
+	public String grantTable(String tableName) {
+		String grantIt = "GRANT SELECT " + tableName + " TO PUBLIC";
+		return grantIt;
+	}
+	
+	/*---------------------------------------------------------------------
+    |  Method: insert
+    |
+    |  Purpose: insert a row in to a table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters: String tableName - name of table
+    |              int distNum - school district number column
+    |              int schlNum - school number column
+    |              String distName - name of school district column
+    |              String schlName - school name column
+    |              int totNum - total number of students enolled at school
+    |              double perNotTested - percentage of students not tested
+    |              int numMin - number of student took minimum test
+    |              double perMin - percentage of student passed minimum test
+    |              int numBasic - number of student took basic test
+    |              double perBasic - percentage of student passed basic test
+    |              int proNum - number of student took proficient test
+    |              double perPro - percentage of student passed proficient test
+    |              int numAdv - number of student took advance test
+    |              double perAdv - percentage of student passed advance test
+    |
+    |  Returns: String
+    *-------------------------------------------------------------------*/
+	public String insert(String tableName,
+			             int distNum,
+			             int schlNum,
+			             String distName,
+			             String schlName,
+			             int totNum,
+			             double perNotTested,
+			             int numMin,
+			             double perMin,
+			             int numBasic,
+			             double perBasic,
+			             int proNum,
+			             double perPro,
+			             int numAdv,
+			             double perAdv) {
+		String insertRow = "insert into " + tableName + " values (" + distNum + "," 
+			                                                        + schlNum + ",'" 
+				                                                    + distName + "','" 
+			                                                        + schlName + "'," 
+				                                                    + totNum + ","
+				                                                    + perNotTested + ","
+				                                                    + numMin + ","
+				                                                    + perMin + ","
+				                                                    + numBasic + ","
+				                                                    + perBasic + ","
+				                                                    + proNum + ","
+				                                                    + perPro + ","
+				                                                    + numAdv + ","
+				                                                    + perAdv + ")";
+		
+		return insertRow;
+	}
 }

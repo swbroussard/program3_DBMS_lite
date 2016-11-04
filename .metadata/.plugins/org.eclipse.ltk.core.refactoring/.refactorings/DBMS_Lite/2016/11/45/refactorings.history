@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;name&apos; in &apos;createPopulateTable.main(...)&apos; to &apos;names&apos;&#x0A;- Original project: &apos;DBMS_Lite&apos;&#x0A;- Original element: &apos;createPopulateTable.main(String[]).name&apos;&#x0A;- Renamed element: &apos;name&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;name&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{createPopulateTable.java[createPopulateTable~main~\[QString;@name!2933!2962!2942!2945!\[QString;!0!false" name="names" references="true" stamp="1478213532385" version="1.0"/>
+</session>

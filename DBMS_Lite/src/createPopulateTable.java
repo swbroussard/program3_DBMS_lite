@@ -1,0 +1,222 @@
+import java.io.*;
+import java.sql.*;
+import java.util.*;
+
+/*+----------------------------------------------------------------------
+ ||
+ ||  Class: createPopulateTables
+ ||
+ ||         Author: Steven Broussard (stevenwbroussard@email.arizona.edu)
+ ||
+ ||        Purpose: Creates SQL Tables and populate them. Also delete table(s)
+ ||                 when necessary.
+ ||
+ ||  Inherits From: none
+ ||
+ ||     Interfaces: none
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||      Constants: none
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||   Constructors: none
+ ||
+ ||  Class Methods: extractName
+ ||                 createTables
+ ||
+ ||  Inst. Methods: none
+ ||
+ ++-----------------------------------------------------------------------*/
+
+public class createPopulateTable {
+	//global instance variable for SQL queries
+	private static SQLCommandLibrary comd = new SQLCommandLibrary();
+	
+	/*---------------------------------------------------------------------
+    |  Method: extractName
+    |
+    |  Purpose: extract the name of from the file object into a string array
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters: String[] fileNames - set of files to exact the name of the file
+    |
+    |  Returns: String[]
+    *-------------------------------------------------------------------*/
+	private static String[] extractName(String[] fileNames) {
+		String[] nameOfFiles = new String[4];
+		String[] file = null;
+		String fileName = "";
+		String name = "";
+		
+		for (int i = 0; i < 4; i++) {
+			file = fileNames[i].split("\\/");
+			fileName = file[file.length - 1];
+			name = fileName.substring(0, fileName.length() - 3);
+			nameOfFiles[i] = name;
+		}
+		
+		for (int j = 0; j < 4; j++) {
+			System.out.println(nameOfFiles[j]);
+			System.exit(0);
+		}
+		
+		return nameOfFiles;
+	}
+		
+	/*---------------------------------------------------------------------
+    |  Method: createTables
+    |
+    |  Purpose: create the tables in the SQl server
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters: String fileName - file object of the csv file to
+    |                                fill in the table
+    |              Statement stat - statement object to execute query statement
+    |
+    |  Returns: String
+    *-------------------------------------------------------------------*/
+	private static void createTables(String[] fileName, Statement stat) {
+		
+		//creates a table with the name of the file
+		try {
+			stat.executeQuery(comd.createTable(fileName[1]));
+		}
+		catch(SQLException s) {
+			System.out.println("CREATE Statement Failed.");
+			s.printStackTrace();
+			System.exit(-1);
+		}
+	}
+	
+	/*---------------------------------------------------------------------
+    |  Method: populateTable
+    |
+    |  Purpose: populates the named table with the information from the
+    |           respective csv file
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters: String name - name of the file that corresponds to a table
+    |              File fileObj - file object to read the data
+    |              Statement stat - statement SQL object for executing SQL statements
+    |
+    |  Returns: String
+    *-------------------------------------------------------------------*/
+	private static void populateTable(String name, File fileObj, Statement stat) {
+		String tableName = "";
+		Scanner scan = null;
+		String line = "";
+		String[] splitLine = null;
+		
+		tableName = "stevenwbroussard." + name;
+		try {
+			scan = new Scanner(fileObj, "r");
+		}
+		catch(IOException e) {
+			System.out.println("Failed make thread with file.");
+			e.printStackTrace();
+			System.exit(-1);
+		}
+		
+		//TODO: use a for loop to go through, later use a while loop
+		//while (scan.hasNext() != false) {
+		for (int i = 0; i < 10; i++) {
+			line = scan.nextLine();
+			splitLine = line.split("\\,");
+			
+			try {
+				stat.executeUpdate(comd.insert(tableName, 
+					    	                   Integer.parseInt(splitLine[0]), 
+					    	                   Integer.parseInt(splitLine[1]), 
+					    	                   splitLine[2], 
+					    	                   splitLine[3], 
+					    	                   Integer.parseInt(splitLine[4]), 
+					    	                   Double.parseDouble(splitLine[5]), 
+					    	                   Integer.parseInt(splitLine[6]), 
+					    	                   Double.parseDouble(splitLine[7]), 
+					    	                   Integer.parseInt(splitLine[8]), 
+					    	                   Double.parseDouble(splitLine[9]), 
+					    	                   Integer.parseInt(splitLine[10]), 
+					    	                   Double.parseDouble(splitLine[11]), 
+					    	                   Integer.parseInt(splitLine[12]), 
+					    	                   Double.parseDouble(splitLine[13])));
+			}
+			catch(SQLException s) {
+				System.out.println("SQL insert statement failed.");
+				s.printStackTrace();
+				System.exit(-1);
+			}
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		Connection dbConnection = null;
+		Statement stat = null;
+		//ResultSet answer = null;
+		File[] fileSet = new File[4];
+		String[] names = new String[4];
+		
+		//initialize the file object set array
+		fileSet[0] = new File(args[0]);
+		fileSet[1] = new File(args[1]);
+		fileSet[2] = new File(args[2]);
+		fileSet[3] = new File(args[3]);
+		
+		//just the name of the file with out the post fix file format
+		names = extractName(args);
+				
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+		}
+		catch(ClassNotFoundException c) {
+			System.out.println("Can not find Class Driver.");
+			System.exit(-1);
+		}
+		
+		//connect to the Oracle server
+		try {
+			dbConnection = DriverManager.getConnection(
+				           "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle"
+				           ,"stevenwbroussard", "a2117");
+		}
+		catch(SQLException s) {
+			System.out.println("Connection Failed.");
+			s.printStackTrace();
+			System.exit(-1);
+		}
+		
+		//creates SQL statement query object
+		try {
+			stat = dbConnection.createStatement();
+		}
+		catch(SQLException s) {
+			System.out.println("Making SQL Statement Object Failed.");
+			s.printStackTrace();
+			System.exit(-1);
+		}
+		
+		//TODO: Make the tables one at a time and 
+		//      use grant command for visibility of tables for each one
+		//      This will be done in the for loop over the set of file names
+		//      with out all the post fix format and path to the filey67
+		createTables(names, stat);
+		
+		//TODO: populate the table with the information from the csv file
+		//for (int i = 0; i < 4; i++) {
+			//populateTable(names[i], fileSet[i], stat);
+		//}
+		
+	}
+
+}

@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.io.*;
 
 /*=========================================================================
  |   Assignment:  Program #3: JDBC  
@@ -7,13 +8,11 @@ import java.sql.*;
  |
  |       Course: CSC 460
  |   Instructor: L. McCann
- |     Due Date: November 3, 2016 12:29PM
+ |     Due Date: November 3, 2016 12:29PM (late: 1 day)
  |
- |  Description: Using the cleaned up csv files; connects to the oracle database
- |               server, create the tables from the cleaned csv files using
- |               SQL commands, and have a user interface or view with a few
- |               query questions parents might be interested to know about
- |               the schools.
+ |  Description: connects to the oracle database and 
+ |               have a user interface or view with a few query questions 
+ |               parents might be interested to know about the schools.
  |
  |     Language: Java JE 1.8
  | Ex. Packages: 
@@ -21,16 +20,13 @@ import java.sql.*;
  | Deficiencies: none as of right now
  *=======================================================================*/
 public class Prog3 {
-	private static SQLCommandLibrary comd = new SQLCommandLibrary();
 	
-	private static void createTables(String fileName, Statement stat) {
-		
-	}
+	//global instance variable for SQL queries
+	private static SQLCommandLibrary comd = new SQLCommandLibrary();
 	
 	public static void main(String[] vars) {
 		Connection dbConnection = null;
 		Statement stat = null;
-		ResultSet answer = null;
 		
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
@@ -57,15 +53,10 @@ public class Prog3 {
 			stat = dbConnection.createStatement();
 		}
 		catch(SQLException s) {
-			System.out.println("Making SQL Statement Failed.");
+			System.out.println("Making SQL Statement Object Failed.");
 			s.printStackTrace();
 			System.exit(-1);
 		}
-		
-		//TODO: Make the tables one at a time and 
-		//      use grant command for visibility of tables for each one
-		
-		createTables("", stat);
 		
 		//TODO: make user input scanner
 		//TODO: choice one: for each of the school yearss and the different percentages,

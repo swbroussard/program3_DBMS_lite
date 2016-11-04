@@ -1,0 +1,72 @@
+import java.sql.*;
+import java.io.*;
+
+/*=========================================================================
+ |   Assignment:  Program #3: JDBC  
+ |       Author: Steven Broussard (stevenwbroussard@email.arizona.edu)
+ |       Grader: Zhenge Zhoa 
+ |
+ |       Course: CSC 460
+ |   Instructor: L. McCann
+ |     Due Date: November 3, 2016 12:29PM (late: 1 day)
+ |
+ |  Description: Using the cleaned up csv files; connects to the oracle database
+ |               server, create the tables from the cleaned csv files using
+ |               SQL commands, and have a user interface or view with a few
+ |               query questions parents might be interested to know about
+ |               the schools.
+ |
+ |     Language: Java JE 1.8
+ | Ex. Packages: 
+ |                
+ | Deficiencies: none as of right now
+ *=======================================================================*/
+public class Prog3 {
+	
+	//global instance variable for SQL queries
+	private static SQLCommandLibrary comd = new SQLCommandLibrary();
+	
+	public static void main(String[] vars) {
+		Connection dbConnection = null;
+		Statement stat = null;
+		
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+		}
+		catch(ClassNotFoundException c) {
+			System.out.println("Can not find Class Driver.");
+			System.exit(-1);
+		}
+		
+		//connect to the Oracle server
+		try {
+			dbConnection = DriverManager.getConnection(
+				           "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle"
+				           ,"stevenwbroussard", "a2117");
+		}
+		catch(SQLException s) {
+			System.out.println("Connection Failed.");
+			s.printStackTrace();
+			System.exit(-1);
+		}
+		
+		//creates SQL statement query object
+		try {
+			stat = dbConnection.createStatement();
+		}
+		catch(SQLException s) {
+			System.out.println("Making SQL Statement Object Failed.");
+			s.printStackTrace();
+			System.exit(-1);
+		}
+		
+		//TODO: make user input scanner
+		//TODO: choice one: for each of the school yearss and the different percentages,
+		//      list the top 5 highest percentage school in descending order.
+		//TODO: choice two: Given each school during the four years; list if the
+		//      not tested percentage trend is strictly increasing, decreasing, or neither.
+		//TODO: choice three: for each school during the four years; show by average amount
+		//      of strictly increasing, decreasing, or about balanced.
+	}
+	
+}

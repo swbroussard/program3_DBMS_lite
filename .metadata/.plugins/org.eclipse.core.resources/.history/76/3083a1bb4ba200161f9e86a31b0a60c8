@@ -1,0 +1,81 @@
+/*+----------------------------------------------------------------------
+ ||
+ ||  Class: 
+ ||
+ ||         Author: Steven Broussard (stevenwbroussard@email.arizona.edu)
+ ||
+ ||        Purpose: Library of SQL Command set up as though they are Java
+ ||                 commands. Some will be a whole query as a String, because
+ ||                 of the complexity of the query.
+ ||
+ ||  Inherits From: 
+ ||
+ ||     Interfaces: none
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||      Constants: 
+ ||
+ |+-----------------------------------------------------------------------
+ ||
+ ||   Constructors: none
+ ||
+ ||  Class Methods: createTable
+ ||                 grantTable
+ ||
+ ||  Inst. Methods: 
+ ||
+ ++-----------------------------------------------------------------------*/
+
+public class SQLCommandLibrary {
+	/*---------------------------------------------------------------------
+    |  Method: createTable
+    |
+    |  Purpose: string that represent SQL statement to create a table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters: String fileName - name of the table
+    |
+    |  Returns: String
+    *-------------------------------------------------------------------*/
+	public String createTable(String fileName) {
+		String createATable = "create table " + "stevenwbroussard."+ fileName + "("
+			              + "distNum   integer,\n"
+			              + "schoolNum integer,\n"
+			              + "distName  varchar2(30),\n"
+			              + "schName   varchar2(30),\n"
+			              + "totNumEn  integer,\n"
+			              + "perNoTest float,\n"
+			              + "numMin    integer,\n"
+			              + "perMin    float,\n"
+			              + "numBasic  integer,\n"
+			              + "perBasic  float,\n"
+			              + "numPro    integer,\n"
+			              + "perPro    float,\n"
+			              + "numAdvan  integer,\n"
+			              + "perAdvan  float,\n"
+			              + ")";
+		return createATable;
+	}
+	
+	/*---------------------------------------------------------------------
+    |  Method: grantTable
+    |
+    |  Purpose: grants public access to the table
+    |
+    |  Pre-condition: none
+    |
+    |  Post-condition: none
+    |
+    |  Parameters: String tableName - name of the table in Oracle database
+    |
+    |  Returns: String
+    *-------------------------------------------------------------------*/
+	public String grantTable(String tableName) {
+		String grantIt = "GRANT SELECT " + tableName + " TO PUBLIC";
+		return grantIt;
+	}
+}
