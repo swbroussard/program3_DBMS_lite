@@ -169,7 +169,7 @@ public class clean_WRCT_files {
 	orgCSV = new File(orgFile);
 	cleanCSV = new File(cleanFile);
 	
-	//check if clean CSV file exist, if so delete it and makes a new one
+	//check if clean CSV file exist, if so delete it
 	isCleanExist(cleanCSV);
 	
 	//make instance of Random Access File thread of clean CSV file

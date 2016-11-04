@@ -146,7 +146,7 @@ public class clean_WRCT_files {
 			}
 			//loop through the array from 0 to n - 1 with commas and write the last one
 			// with a return character
-			for (int j = 0; j < size - 1; j++) {
+			for (int j = 0; j < size - 2; j++) {
 				cleanThread.writeBytes(separateElements[j] + ",");
 			}
 			cleanThread.writeBytes(separateElements[size - 1] + '\n');
@@ -169,7 +169,7 @@ public class clean_WRCT_files {
 	orgCSV = new File(orgFile);
 	cleanCSV = new File(cleanFile);
 	
-	//check if clean CSV file exist, if so delete it and makes a new one
+	//check if clean CSV file exist, if so delete it
 	isCleanExist(cleanCSV);
 	
 	//make instance of Random Access File thread of clean CSV file
