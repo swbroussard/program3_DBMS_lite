@@ -210,7 +210,7 @@ public class createPopulateTable {
 		
 		//TODO: populate the table with the information from the csv file
 		//for (int i = 0; i < 4; i++) {
-			populateTable(names[0], fileSet[0], stat);
+			//populateTable(names[i], fileSet[i], stat);
 		//}
 		
 	}

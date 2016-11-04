@@ -80,6 +80,9 @@ public class createPopulateTable {
     *-------------------------------------------------------------------*/
 	private static void createTables(String[] fileName, Statement stat) {
 		
+		System.out.println("stevenwbroussard." + fileName[0].substring(0, fileName[0].length() - 6));
+		System.exit(0);
+		
 		//creates a table with the name of the file
 		try {
 			stat.executeQuery(comd.createTable("stevenwbroussard." + fileName[0].substring(0, fileName[0].length() - 6)));
@@ -210,7 +213,7 @@ public class createPopulateTable {
 		
 		//TODO: populate the table with the information from the csv file
 		//for (int i = 0; i < 4; i++) {
-			populateTable(names[0], fileSet[0], stat);
+			//populateTable(names[i], fileSet[i], stat);
 		//}
 		
 	}
