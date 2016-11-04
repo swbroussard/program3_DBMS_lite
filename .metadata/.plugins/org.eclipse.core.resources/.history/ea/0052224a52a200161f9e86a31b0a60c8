@@ -43,7 +43,7 @@ public class SQLCommandLibrary {
     |  Returns: String
     *-------------------------------------------------------------------*/
 	public String createTable(String fileName) {
-		String createATable = "create table " + fileName + "("
+		String createATable = "create table " + "stevenwbroussard."+ fileName + "("
 			              + "distNum   integer,\n"
 			              + "schoolNum integer,\n"
 			              + "distName  varchar2(30),\n"

@@ -81,11 +81,8 @@ public class createPopulateTable {
 	private static void createTables(String[] fileName, Statement stat) {
 		
 		//creates a table with the name of the file
-		System.out.println(fileName[0].substring(0, fileName[0].length() - 6));
-		System.exit(0);
-		
 		try {
-			stat.executeQuery(comd.createTable("stevenwbroussard." + fileName[0].substring(0, fileName[0].length() - 6)));
+			stat.executeQuery(comd.createTable(fileName[1]));
 		}
 		catch(SQLException s) {
 			System.out.println("CREATE Statement Failed.");

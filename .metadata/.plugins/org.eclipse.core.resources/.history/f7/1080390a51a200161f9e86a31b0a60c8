@@ -60,6 +60,10 @@ public class createPopulateTable {
 			nameOfFiles[i] = name;
 		}
 		
+		for (int j = 0; j < 4; j++) {
+			System.out.println(nameOfFiles[j]);
+		}
+		System.exit(0);
 		return nameOfFiles;
 	}
 		
@@ -81,11 +85,8 @@ public class createPopulateTable {
 	private static void createTables(String[] fileName, Statement stat) {
 		
 		//creates a table with the name of the file
-		System.out.println(fileName[0].substring(0, fileName[0].length() - 6));
-		System.exit(0);
-		
 		try {
-			stat.executeQuery(comd.createTable("stevenwbroussard." + fileName[0].substring(0, fileName[0].length() - 6)));
+			stat.executeQuery(comd.createTable(fileName[1]));
 		}
 		catch(SQLException s) {
 			System.out.println("CREATE Statement Failed.");
@@ -126,7 +127,7 @@ public class createPopulateTable {
 			System.exit(-1);
 		}
 		
-		//use a for loop to go through, later use a while loop
+		//TODO: use a for loop to go through, later use a while loop
 		//while (scan.hasNext() != false) {
 		for (int i = 0; i < 10; i++) {
 			line = scan.nextLine();
