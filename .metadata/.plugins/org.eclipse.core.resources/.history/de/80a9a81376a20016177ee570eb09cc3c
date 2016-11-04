@@ -113,7 +113,7 @@ public class createPopulateTable {
 		String line = "";
 		String[] splitLine = null;
 		
-		tableName = "stevenwbroussard." + name.substring(0, name.length() - 6);
+		tableName = "stevenwbroussard." + name;
 		try {
 			scan = new Scanner(fileObj);
 		}
@@ -169,7 +169,7 @@ public class createPopulateTable {
 		fileSet[2] = new File(args[2]);
 		fileSet[3] = new File(args[3]);
 		
-		//just the name of the file with out the post fix file format and '_clean' phrase
+		//just the name of the file with out the post fix file format
 		names = extractName(args);
 				
 		try {
@@ -211,7 +211,7 @@ public class createPopulateTable {
 		
 		//TODO: populate the table with the information from the csv file
 		//for (int i = 0; i < 4; i++) {
-		populateTable(names[0], fileSet[0], stat);
+			populateTable(names[0], fileSet[0], stat);
 		//}
 		
 	}
