@@ -181,9 +181,9 @@ public class SQLCommandLibrary {
 	public String whichPercent(String percent, String tableName) {
 		String outputPercent = "";
 		
-		outputPercent = "select " + "schName, " + percent 
+		outputPercent = "select " + percent + ", schName"
 				        + " from " + tableName
-				        + " group by " + percent + " desc";
+				        + " group by " + percent;
 		
 		return outputPercent;
 	}

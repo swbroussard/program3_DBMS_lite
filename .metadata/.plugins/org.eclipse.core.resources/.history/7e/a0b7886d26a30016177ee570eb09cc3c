@@ -1,5 +1,5 @@
 import java.sql.*;
-//import java.io.*;
+import java.io.*;
 
 /*=========================================================================
  |   Assignment:  Program #3: JDBC  
@@ -42,56 +42,6 @@ public class Prog3 {
     *-------------------------------------------------------------------*/
 	private static void topFivePercentage(String percent, Statement stat) {
 		ResultSet ans = null;
-		String[] tables = new String[4];
-		ResultSetMetaData ansMetaData = null;
-		
-		tables[0] = "stevenwbroussard.WRCT_98_99";
-		tables[1] = "stevenwbroussard.WRCT_00_01";
-		tables[2] = "stevenwbroussard.WRCT_02_03";
-		tables[3] = "stevenwbroussard.WRCT_04_05";
-		
-		try {
-			ans = stat.executeQuery(comd.whichPercent(percent, tables[0]));
-		}
-		catch(SQLException s) {
-			System.out.println("SQL persent statement failed.");
-			s.printStackTrace();
-			System.exit(-1);
-		}
-		
-		try {
-			ansMetaData = ans.getMetaData();
-		}
-		catch(SQLException s) {
-			System.out.println("grabing meta data failed.");
-			s.printStackTrace();
-			System.exit(-1);
-		}
-		
-		try {
-			for (int i = 1; i <= ansMetaData.getColumnCount(); i++) {
-				System.out.print(ansMetaData.getColumnName(i) + "\t");
-			}
-		}
-		catch(SQLException s) {
-			System.out.println("Grabbing column name fail from SQL.");
-			System.exit(-1);
-		}
-		
-		try {
-			while (ans.next()) {
-				System.out.println(ans.getString("schName") + "\t"
-						+ ans.getDouble(percent));
-			}
-		}
-		catch(SQLException s) {
-			System.out.println("Grabbing tuple by column name failed.");
-			s.printStackTrace();
-			System.exit(-1);
-		}
-		
-		System.out.println("");
-		
 	}
 	
 	public static void main(String[] vars) {
@@ -111,7 +61,7 @@ public class Prog3 {
 		try {
 			dbConnection = DriverManager.getConnection(
 				           "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle"
-				           ,vars[0], vars[1]);
+				           ,"stevenwbroussard", "a2117");
 		}
 		catch(SQLException s) {
 			System.out.println("Connection Failed.");

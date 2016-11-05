@@ -1,5 +1,5 @@
 import java.sql.*;
-//import java.io.*;
+import java.io.*;
 
 /*=========================================================================
  |   Assignment:  Program #3: JDBC  
@@ -111,7 +111,7 @@ public class Prog3 {
 		try {
 			dbConnection = DriverManager.getConnection(
 				           "jdbc:oracle:thin:@aloe.cs.arizona.edu:1521:oracle"
-				           ,vars[0], vars[1]);
+				           ,"stevenwbroussard", "a2117");
 		}
 		catch(SQLException s) {
 			System.out.println("Connection Failed.");

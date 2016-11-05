@@ -163,28 +163,4 @@ public class SQLCommandLibrary {
 		
 		return dropTable;
 	}
-	
-	/*---------------------------------------------------------------------
-    |  Method: whichPercent
-    |
-    |  Purpose: return top five schools of the chosen percents from each table
-    |
-    |  Pre-condition: none
-    |
-    |  Post-condition: none
-    |
-    |  Parameters: String percent - input of which percent to use
-    |              String tableName - name of the table
-    |
-    |  Returns: String
-    *-------------------------------------------------------------------*/
-	public String whichPercent(String percent, String tableName) {
-		String outputPercent = "";
-		
-		outputPercent = "select " + "schName, " + percent 
-				        + " from " + tableName
-				        + " group by " + percent + " desc";
-		
-		return outputPercent;
-	}
 }
