@@ -54,7 +54,7 @@ public class Prog3 {
 			ans = stat.executeQuery(comd.whichPercent(percent, tables[0]));
 		}
 		catch(SQLException s) {
-			System.out.println("SQL percent statement failed.");
+			System.out.println("SQL persent statement failed.");
 			s.printStackTrace();
 			System.exit(-1);
 		}
@@ -94,12 +94,10 @@ public class Prog3 {
 		
 	}
 	
-	//executing main program
 	public static void main(String[] vars) {
 		Connection dbConnection = null;
 		Statement stat = null;
 		
-		//calling the driver
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 		}
@@ -140,17 +138,6 @@ public class Prog3 {
 		//      not tested percentage trend is strictly increasing, decreasing, or neither.
 		//TODO: choice three: for each school during the four years; show by average amount
 		//      of strictly increasing, decreasing, or about balanced.
-		
-		//close all threads before exiting the program
-		try {
-			stat.close();
-			dbConnection.close();
-		}
-		catch (SQLException i) {
-			System.out.println("Attempted to Close Threads and failed.");
-			i.printStackTrace();
-			System.exit(-1);
-		}
 	}
 	
 }

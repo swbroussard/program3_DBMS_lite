@@ -14,7 +14,7 @@
  ||
  |+-----------------------------------------------------------------------
  ||
- ||      Constants: none
+ ||      Constants: 
  ||
  |+-----------------------------------------------------------------------
  ||
@@ -183,7 +183,7 @@ public class SQLCommandLibrary {
 		
 		outputPercent = "select " + "schName, " + percent 
 				        + " from " + tableName
-				        + " order by " + percent + " desc";
+				        + " group by " + percent + " desc";
 		
 		return outputPercent;
 	}
