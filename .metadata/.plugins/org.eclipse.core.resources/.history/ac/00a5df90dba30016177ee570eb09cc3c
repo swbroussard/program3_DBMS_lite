@@ -1,6 +1,6 @@
 /*+----------------------------------------------------------------------
  ||
- ||  Class: SQLCommandLibrary
+ ||  Class: 
  ||
  ||         Author: Steven Broussard (stevenwbroussard@email.arizona.edu)
  ||
@@ -8,7 +8,7 @@
  ||                 commands. Some will be a whole query as a String, because
  ||                 of the complexity of the query.
  ||
- ||  Inherits From: none
+ ||  Inherits From: 
  ||
  ||     Interfaces: none
  ||
@@ -23,10 +23,6 @@
  ||  Class Methods: createTable
  ||                 grantTable
  ||                 insert
- ||                 deleteTable
- ||                 whichPercent
- ||                 noTestPercent
- ||                 grabPercent
  ||
  ||  Inst. Methods: none
  ||

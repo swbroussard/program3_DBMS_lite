@@ -213,7 +213,6 @@ public class Prog3 {
 		double sum = 0.0;
 		double occurence = 0.0;
 		double temp = 0.0;
-		double ave = 0.0;
 		
 		tables[0] = "stevenwbroussard.WRCT_98_99";
 		tables[1] = "stevenwbroussard.WRCT_00_01";
@@ -245,11 +244,19 @@ public class Prog3 {
 			}
 		}
 		
-		//average the sum and occurence values
-		ave = sum / occurence; 
-		
-		//prints out the average of a percent for a school
-		System.out.println("The average of " + percent + " for the " + schoolName + " is "  + (Math.round(ave)));
+		if (percentNotTested[0] < percentNotTested[1] &&
+			percentNotTested[1] < percentNotTested[2] &&
+			percentNotTested[2] < percentNotTested[3]) {
+			System.out.println("The noTest percent for " + schlName + " is increasing.");
+		}
+		else if (percentNotTested[0] > percentNotTested[1] &&
+				 percentNotTested[1] > percentNotTested[2] &&
+				 percentNotTested[2] > percentNotTested[3]) {
+			System.out.println("The noTest percent for " + schlName + " is decreasing.");
+		}
+		else {
+			System.out.println("can not determined increasing or decreasing.");
+		}
 		
 		//release ResultSet object information
 		try {
@@ -301,12 +308,12 @@ public class Prog3 {
 		}
 		
 		//TODO: make user input scanner
-		//choice one: for each of the school years and the different percentages,
-		//list the top 5 highest percentage school in descending order.
+		//TODO: choice one: for each of the school years and the different percentages,
+		//      list the top 5 highest percentage school in descending order.
 		//topFivePercentage("perBasic", stat);
 		
-		//choice two: Given each school during the four years; list if the
-		//not tested percentage trend is strictly increasing, decreasing, or neither.
+		//TODO: choice two: Given each school during the four years; list if the
+		//      not tested percentage trend is strictly increasing, decreasing, or neither.
 		//noTestTrend("Adams-Friendship El", stat);
 		
 		//TODO: choice three: Average of percents for that school

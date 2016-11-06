@@ -301,12 +301,12 @@ public class Prog3 {
 		}
 		
 		//TODO: make user input scanner
-		//choice one: for each of the school years and the different percentages,
-		//list the top 5 highest percentage school in descending order.
+		//TODO: choice one: for each of the school years and the different percentages,
+		//      list the top 5 highest percentage school in descending order.
 		//topFivePercentage("perBasic", stat);
 		
-		//choice two: Given each school during the four years; list if the
-		//not tested percentage trend is strictly increasing, decreasing, or neither.
+		//TODO: choice two: Given each school during the four years; list if the
+		//      not tested percentage trend is strictly increasing, decreasing, or neither.
 		//noTestTrend("Adams-Friendship El", stat);
 		
 		//TODO: choice three: Average of percents for that school

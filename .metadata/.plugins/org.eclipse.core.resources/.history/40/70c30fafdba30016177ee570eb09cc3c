@@ -38,7 +38,7 @@ public class Prog3 {
     |  Parameters: String percentage - the user choice of percents
     |              Statement stat - Statement object to execute SQL queries
     |
-    |  Returns: none
+    |  Returns: void
     *-------------------------------------------------------------------*/
 	private static void topFivePercentage(String percent, Statement stat) {
 		ResultSet ans = null;
@@ -129,7 +129,7 @@ public class Prog3 {
     |  Parameters: String schlName - the user choice of school name
     |              Statement stat - Statement object to execute SQL queries
     |
-    |  Returns: none
+    |  Returns: void
     *-------------------------------------------------------------------*/
 	private static void noTestTrend (String schlName, Statement stat) {
 		ResultSet ans = null;
@@ -193,75 +193,6 @@ public class Prog3 {
 		}		
 		
 	}
-	/*---------------------------------------------------------------------
-    |  Method: noTestTrend
-    |
-    |  Purpose: user selects school name and outputs if the no test percent
-    |           is increasing, decreasing, or neither.
-    |  Pre-condition: none
-    |
-    |  Post-condition: none
-    |
-    |  Parameters: String schlName - the user choice of school name
-    |              Statement stat - Statement object to execute SQL queries
-    |
-    |  Returns: none
-    *-------------------------------------------------------------------*/
-	private static void averagePercent(String percent,String schoolName, Statement stat) {
-		ResultSet ans = null;
-		String[] tables = new String[4];
-		double sum = 0.0;
-		double occurence = 0.0;
-		double temp = 0.0;
-		double ave = 0.0;
-		
-		tables[0] = "stevenwbroussard.WRCT_98_99";
-		tables[1] = "stevenwbroussard.WRCT_00_01";
-		tables[2] = "stevenwbroussard.WRCT_02_03";
-		tables[3] = "stevenwbroussard.WRCT_04_05";
-		
-		for (int m = 0; m < tables.length; m++) {
-			try {
-				ans = stat.executeQuery(comd.grabPercent(schoolName, tables[m], percent));
-			}
-			catch (SQLException s) {
-				System.out.println("SQL Query Failed.");
-				s.printStackTrace();
-				System.exit(-1);
-			}
-		
-			try {
-				ans.next();
-				temp = ans.getDouble("perNoTest");
-				if (temp != -1.0) {
-					sum += temp;
-					occurence += 1;
-				}
-			}
-			catch(SQLException s) {
-				System.out.println("Grabbing tuple by column name failed.");
-				s.printStackTrace();
-				System.exit(-1);
-			}
-		}
-		
-		//average the sum and occurence values
-		ave = sum / occurence; 
-		
-		//prints out the average of a percent for a school
-		System.out.println("The average of " + percent + " for the " + schoolName + " is "  + (Math.round(ave)));
-		
-		//release ResultSet object information
-		try {
-			ans.close();
-		}
-		catch (SQLException s) {
-			System.out.println("Can not close ResultSet object.");
-			s.printStackTrace();
-			System.exit(-1);
-		}
-		
-	}
 	
 	//executing main program
 	public static void main(String[] vars) {
@@ -301,16 +232,16 @@ public class Prog3 {
 		}
 		
 		//TODO: make user input scanner
-		//choice one: for each of the school years and the different percentages,
-		//list the top 5 highest percentage school in descending order.
+		//TODO: choice one: for each of the school years and the different percentages,
+		//      list the top 5 highest percentage school in descending order.
 		//topFivePercentage("perBasic", stat);
 		
-		//choice two: Given each school during the four years; list if the
-		//not tested percentage trend is strictly increasing, decreasing, or neither.
-		//noTestTrend("Adams-Friendship El", stat);
+		//TODO: choice two: Given each school during the four years; list if the
+		//      not tested percentage trend is strictly increasing, decreasing, or neither.
+		noTestTrend("Adams-Friendship El", stat);
 		
-		//TODO: choice three: Average of percents for that school
-		averagePercent("perBasic","Adams-Friendship El",stat);
+		//TODO: choice three: for each school during the four years; show by average amount
+		//      of strictly increasing, decreasing, or about balanced.
 		
 		//close all threads before exiting the program
 		try {

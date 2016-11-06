@@ -245,11 +245,9 @@ public class Prog3 {
 			}
 		}
 		
-		//average the sum and occurence values
 		ave = sum / occurence; 
 		
-		//prints out the average of a percent for a school
-		System.out.println("The average of " + percent + " for the " + schoolName + " is "  + (Math.round(ave)));
+		System.out.println("The average of " + percent + " for the " + schoolName + " is "  + (ave));
 		
 		//release ResultSet object information
 		try {
@@ -301,12 +299,12 @@ public class Prog3 {
 		}
 		
 		//TODO: make user input scanner
-		//choice one: for each of the school years and the different percentages,
-		//list the top 5 highest percentage school in descending order.
+		//TODO: choice one: for each of the school years and the different percentages,
+		//      list the top 5 highest percentage school in descending order.
 		//topFivePercentage("perBasic", stat);
 		
-		//choice two: Given each school during the four years; list if the
-		//not tested percentage trend is strictly increasing, decreasing, or neither.
+		//TODO: choice two: Given each school during the four years; list if the
+		//      not tested percentage trend is strictly increasing, decreasing, or neither.
 		//noTestTrend("Adams-Friendship El", stat);
 		
 		//TODO: choice three: Average of percents for that school

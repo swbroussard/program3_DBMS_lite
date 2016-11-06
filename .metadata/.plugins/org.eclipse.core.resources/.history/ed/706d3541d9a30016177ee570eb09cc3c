@@ -131,45 +131,45 @@ public class createPopulateTable {
 			
 			//if the type for integer column is NULL
 			if (splitLine[0].equals("NULL")) {
-				splitLine[0] = "-1";
+				splitLine[0] = "0";
 			}
 			if (splitLine[1].equals("NULL")) {
-				splitLine[1] = "-1";
+				splitLine[1] = "0";
 			}
 			if (splitLine[4].equals("NULL")) {
-				splitLine[4] = "-1";
+				splitLine[4] = "0";
 			}
 			if (splitLine[5].equals("NULL")) {
-				splitLine[5] = "-1";
+				splitLine[5] = "0";
 			}
 			if (splitLine[7].equals("NULL")) {
-				splitLine[7] = "-1";
+				splitLine[7] = "0";
 			}
 			if (splitLine[9].equals("NULL")) {
-				splitLine[9] = "-1";
+				splitLine[9] = "0";
 			}
 			if (splitLine[11].equals("NULL")) {
-				splitLine[11] = "-1";
+				splitLine[11] = "0";
 			}
 			if (splitLine[13].equals("NULL")) {
-				splitLine[13] = "-1";
+				splitLine[13] = "0";
 			}
 			
 			//if the type for double column is NULL
 			if (splitLine[6].equals("NULL")) {
-				splitLine[6] = "-1.0";
+				splitLine[6] = "0.0";
 			}
 			if (splitLine[8].equals("NULL")) {
-				splitLine[8] = "-1.0";
+				splitLine[8] = "0.0";
 			}
 			if (splitLine[10].equals("NULL")) {
-				splitLine[10] = "-1.0";
+				splitLine[10] = "0.0";
 			}
 			if (splitLine[12].equals("NULL")) {
-				splitLine[12] = "-1.0";
+				splitLine[12] = "0.0";
 			}
 			if (splitLine[14].equals("NULL")) {
-				splitLine[14] = "-1.0";
+				splitLine[14] = "0.0";
 			}
 			
 			try {
@@ -244,17 +244,6 @@ public class createPopulateTable {
 			System.out.println("Making SQL Statement Object Failed.");
 			s.printStackTrace();
 			System.exit(-1);
-		}
-		
-		for (int f = 0; f < 4; f++) {
-			try {
-				stat.executeQuery(comd.deleteTable(names[f]));
-			}
-			catch (SQLException s) {
-				System.out.println("Can not delete table.");
-				s.printStackTrace();
-				System.exit(-1);
-			}
 		}
 		
 		//Make the tables one at a time and 

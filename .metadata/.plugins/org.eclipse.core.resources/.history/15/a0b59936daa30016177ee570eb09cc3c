@@ -1,6 +1,6 @@
 /*+----------------------------------------------------------------------
  ||
- ||  Class: SQLCommandLibrary
+ ||  Class: 
  ||
  ||         Author: Steven Broussard (stevenwbroussard@email.arizona.edu)
  ||
@@ -8,7 +8,7 @@
  ||                 commands. Some will be a whole query as a String, because
  ||                 of the complexity of the query.
  ||
- ||  Inherits From: none
+ ||  Inherits From: 
  ||
  ||     Interfaces: none
  ||
@@ -23,10 +23,6 @@
  ||  Class Methods: createTable
  ||                 grantTable
  ||                 insert
- ||                 deleteTable
- ||                 whichPercent
- ||                 noTestPercent
- ||                 grabPercent
  ||
  ||  Inst. Methods: none
  ||
@@ -208,28 +204,6 @@ public class SQLCommandLibrary {
     *-------------------------------------------------------------------*/
 	public String noTestPercent(String schoolName, String tableName) {
 		String grabNoTestPer = "select perNoTest" +
-	                           " from " + tableName +
-	                           " where schName='" + schoolName + "'";
-		return grabNoTestPer;
-	}
-	
-	/*---------------------------------------------------------------------
-    |  Method: grapPercent
-    |
-    |  Purpose: query table for input percent and school name
-    |
-    |  Pre-condition: none
-    |
-    |  Post-condition: none
-    |
-    |  Parameters: String schoolName - input of which school name
-    |              String percent - input of which percents
-    |              String tableName - name of the table
-    |
-    |  Returns: String
-    *-------------------------------------------------------------------*/
-	public String grabPercent(String schoolName, String tableName, String percent) {
-		String grabNoTestPer = "select " + percent +
 	                           " from " + tableName +
 	                           " where schName='" + schoolName + "'";
 		return grabNoTestPer;
