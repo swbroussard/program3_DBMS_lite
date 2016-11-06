@@ -50,114 +50,17 @@ public class Prog3 {
 		tables[2] = "stevenwbroussard.WRCT_02_03";
 		tables[3] = "stevenwbroussard.WRCT_04_05";
 		
-		for (int j = 0; j < tables.length; j++) {
-			try {
-				System.out.println(tables[j]);
-				ans = stat.executeQuery(comd.whichPercent(percent, tables[j]));
-			}
-			catch(SQLException s) {
-				System.out.println("SQL percent statement failed.");
-				s.printStackTrace();
-				System.exit(-1);
-			}
-		
-			try {
-				ansMetaData = ans.getMetaData();
-			}
-			catch(SQLException s) {
-				System.out.println("grabing meta data failed.");
-				s.printStackTrace();
-				System.exit(-1);
-			}
-		
-			try {
-				for (int i = 1; i <= ansMetaData.getColumnCount(); i++) {
-					System.out.print(ansMetaData.getColumnName(i) + "\t");
-				}
-			}
-			catch(SQLException s) {
-				System.out.println("Grabbing column name fail from SQL.");
-				s.printStackTrace();
-				System.exit(-1);
-			}
-		
-			//new line after printing columns
-			System.out.println("");
-		
-			try {
-				for (int i = 0; ans.next() && i < 4; i++) {
-					if (!(ans.getString("schName").equals("NULL"))) {
-						System.out.println(ans.getString("schName") + "\t"
-								+ ans.getDouble(percent));
-					}
-					else {
-						System.out.println("Unknown School" + "\t"
-								+ ans.getDouble(percent));
-					}
-				}
-			}
-			catch(SQLException s) {
-				System.out.println("Grabbing tuple by column name failed.");
-				s.printStackTrace();
-				System.exit(-1);
-			}
-		
-			//after printing the results
-			System.out.println("");
-		}   //end of for (int j = 0; j < tables.length; j++)
-		
-		//release information of ResultSet object
 		try {
-			ans.close();
+			ans = stat.executeQuery(comd.whichPercent(percent, tables[0]));
 		}
-		catch (SQLException s) {
-			System.out.println("Can not close ResultSet object.");
-			s.printStackTrace();
-			System.exit(-1);
-		}
-	}
-	
-	/*---------------------------------------------------------------------
-    |  Method: noTestTrend
-    |
-    |  Purpose: user selects school name and outputs if the no test percent
-    |           is increasing, decreasing, or neither.
-    |  Pre-condition: none
-    |
-    |  Post-condition: none
-    |
-    |  Parameters: String schlName - the user choice of school name
-    |              Statement stat - Statement object to execute SQL queries
-    |
-    |  Returns: void
-    *-------------------------------------------------------------------*/
-	private static void noTestTrend (String schlName, Statement stat) {
-		ResultSet ans = null;
-		ResultSetMetaData ansMeta = null;
-		double[] percentNotTested = new double[4];
-		String[] tables = new String[4];
-		
-		tables[0] = "stevenwbroussard.WRCT_98_99";
-		tables[1] = "stevenwbroussard.WRCT_00_01";
-		tables[2] = "stevenwbroussard.WRCT_02_03";
-		tables[3] = "stevenwbroussard.WRCT_04_05";
-		
-		percentNotTested[0] = 0.0;
-		percentNotTested[1] = 0.0;
-		percentNotTested[2] = 0.0;
-		percentNotTested[3] = 0.0;
-		
-		try {
-			ans = stat.executeQuery(comd.noTestPercent(schlName,tables[0]));
-		}
-		catch (SQLException s) {
-			System.out.println("SQL Query Failed.");
+		catch(SQLException s) {
+			System.out.println("SQL percent statement failed.");
 			s.printStackTrace();
 			System.exit(-1);
 		}
 		
 		try {
-			ansMeta = ans.getMetaData();
+			ansMetaData = ans.getMetaData();
 		}
 		catch(SQLException s) {
 			System.out.println("grabing meta data failed.");
@@ -166,8 +69,29 @@ public class Prog3 {
 		}
 		
 		try {
-			percentNotTested[0] = ans.getDouble("perNoTest");
-			System.out.println(percentNotTested[0]);
+			for (int i = 1; i <= ansMetaData.getColumnCount(); i++) {
+				System.out.print(ansMetaData.getColumnName(i) + "\t");
+			}
+		}
+		catch(SQLException s) {
+			System.out.println("Grabbing column name fail from SQL.");
+			System.exit(-1);
+		}
+		
+		//new line after printing columns
+		System.out.println("");
+		
+		try {
+			for (int i = 0; ans.next() && i < 4; i++) {
+				if (!(ans.getString("schName").equals("NULL"))) {
+					System.out.println(ans.getString("schName") + "\t"
+							+ ans.getDouble(percent));
+				}
+				else {
+					System.out.println("Unknown School" + "\t"
+							+ ans.getDouble(percent));
+				}
+			}
 		}
 		catch(SQLException s) {
 			System.out.println("Grabbing tuple by column name failed.");
@@ -175,15 +99,7 @@ public class Prog3 {
 			System.exit(-1);
 		}
 		
-		//release ResultSet object information
-		try {
-			ans.close();
-		}
-		catch (SQLException s) {
-			System.out.println("Can not close ResultSet object.");
-			s.printStackTrace();
-			System.exit(-1);
-		}
+		System.out.println("");
 		
 	}
 	
@@ -227,12 +143,10 @@ public class Prog3 {
 		//TODO: make user input scanner
 		//TODO: choice one: for each of the school years and the different percentages,
 		//      list the top 5 highest percentage school in descending order.
-		//topFivePercentage("perBasic", stat);
+		topFivePercentage("perBasic", stat);
 		
 		//TODO: choice two: Given each school during the four years; list if the
 		//      not tested percentage trend is strictly increasing, decreasing, or neither.
-		noTestTrend("Wilmot El", stat);
-		
 		//TODO: choice three: for each school during the four years; show by average amount
 		//      of strictly increasing, decreasing, or about balanced.
 		

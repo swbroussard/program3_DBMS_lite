@@ -175,16 +175,6 @@ public class Prog3 {
 			System.exit(-1);
 		}
 		
-		//release ResultSet object information
-		try {
-			ans.close();
-		}
-		catch (SQLException s) {
-			System.out.println("Can not close ResultSet object.");
-			s.printStackTrace();
-			System.exit(-1);
-		}
-		
 	}
 	
 	//executing main program

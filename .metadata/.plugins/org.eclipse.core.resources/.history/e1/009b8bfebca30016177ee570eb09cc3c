@@ -148,7 +148,7 @@ public class Prog3 {
 		percentNotTested[3] = 0.0;
 		
 		try {
-			ans = stat.executeQuery(comd.noTestPercent(schlName,tables[0]));
+			ans = stat.executeQuery("");
 		}
 		catch (SQLException s) {
 			System.out.println("SQL Query Failed.");
@@ -166,24 +166,16 @@ public class Prog3 {
 		}
 		
 		try {
-			percentNotTested[0] = ans.getDouble("perNoTest");
-			System.out.println(percentNotTested[0]);
+			for (int i = 1; i <= ansMeta.getColumnCount(); i++) {
+				System.out.print(ansMeta.getColumnName(i) + "\t");
+			}
 		}
 		catch(SQLException s) {
-			System.out.println("Grabbing tuple by column name failed.");
-			s.printStackTrace();
+			System.out.println("Grabbing column name fail from SQL.");
 			System.exit(-1);
 		}
 		
-		//release ResultSet object information
-		try {
-			ans.close();
-		}
-		catch (SQLException s) {
-			System.out.println("Can not close ResultSet object.");
-			s.printStackTrace();
-			System.exit(-1);
-		}
+		
 		
 	}
 	
@@ -227,7 +219,7 @@ public class Prog3 {
 		//TODO: make user input scanner
 		//TODO: choice one: for each of the school years and the different percentages,
 		//      list the top 5 highest percentage school in descending order.
-		//topFivePercentage("perBasic", stat);
+		topFivePercentage("perBasic", stat);
 		
 		//TODO: choice two: Given each school during the four years; list if the
 		//      not tested percentage trend is strictly increasing, decreasing, or neither.

@@ -148,7 +148,7 @@ public class Prog3 {
 		percentNotTested[3] = 0.0;
 		
 		try {
-			ans = stat.executeQuery(comd.noTestPercent(schlName,tables[0]));
+			ans = stat.executeQuery("");
 		}
 		catch (SQLException s) {
 			System.out.println("SQL Query Failed.");
@@ -171,16 +171,6 @@ public class Prog3 {
 		}
 		catch(SQLException s) {
 			System.out.println("Grabbing tuple by column name failed.");
-			s.printStackTrace();
-			System.exit(-1);
-		}
-		
-		//release ResultSet object information
-		try {
-			ans.close();
-		}
-		catch (SQLException s) {
-			System.out.println("Can not close ResultSet object.");
 			s.printStackTrace();
 			System.exit(-1);
 		}

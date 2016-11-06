@@ -187,25 +187,4 @@ public class SQLCommandLibrary {
 		
 		return outputPercent;
 	}
-	
-	/*---------------------------------------------------------------------
-    |  Method: noTestPercent
-    |
-    |  Purpose: query table for noTest percent from a table with the school name
-    |
-    |  Pre-condition: none
-    |
-    |  Post-condition: none
-    |
-    |  Parameters: String schoolName - input of which schoool name
-    |              String tableName - name of the table
-    |
-    |  Returns: String
-    *-------------------------------------------------------------------*/
-	public String noTestPercent(String schoolName, String tableName) {
-		String grabNoTestPer = "select perNoTest" +
-	                           " from " + tableName +
-	                           " where schName='" + schoolName + "'";
-		return grabNoTestPer;
-	}
 }
