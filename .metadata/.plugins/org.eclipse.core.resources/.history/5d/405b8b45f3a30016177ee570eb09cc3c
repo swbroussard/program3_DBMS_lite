@@ -326,7 +326,6 @@ public class Prog3 {
 						//choice one: for each of the school years and the different percentages,
 						//list the top 5 highest percentage school in descending order.
 						topFivePercentage(temp, stat);
-						temp = "";
 						break;
 					}
 					else {
@@ -342,7 +341,6 @@ public class Prog3 {
 				//choice two: Given each school during the four years; list if the
 				//not tested percentage trend is strictly increasing, decreasing, or neither.
 				noTestTrend(temp, stat);
-				temp = "";
 			}
 		
 			else if (temp.equals("3")) {
@@ -356,8 +354,6 @@ public class Prog3 {
 					if (temp.equals("perMin") || temp.equals("perBasic") || temp.equals("perPro") || temp.equals("perAdvan")) {
 						//choice three: Average of percents for that school
 						averagePercent(temp,temp2,stat);
-						temp = "";
-						temp2 = "";
 						break;
 					}
 					else {
@@ -373,8 +369,6 @@ public class Prog3 {
 		}
 		
 		//close all threads before exiting the program
-		
-		System.out.println("Thank you for using the School's DataBase. Have a good day.");
 		try {
 			stat.close();
 			dbConnection.close();

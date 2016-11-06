@@ -373,8 +373,6 @@ public class Prog3 {
 		}
 		
 		//close all threads before exiting the program
-		
-		System.out.println("Thank you for using the School's DataBase. Have a good day.");
 		try {
 			stat.close();
 			dbConnection.close();
