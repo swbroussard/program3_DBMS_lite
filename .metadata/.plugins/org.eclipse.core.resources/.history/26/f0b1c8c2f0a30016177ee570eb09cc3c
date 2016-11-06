@@ -159,9 +159,8 @@ public class Prog3 {
 			}
 		
 			try {
-				if (ans.next()) {
-					percentNotTested[m] = ans.getDouble("perNoTest");
-				}
+				ans.next();
+				percentNotTested[m] = ans.getDouble("perNoTest");
 			}
 			catch(SQLException s) {
 				System.out.println("Grabbing tuple by column name failed.");
@@ -233,12 +232,11 @@ public class Prog3 {
 			}
 		
 			try {
-				if (ans.next()) {
-					temp = ans.getDouble(percent);
-					if (temp != -1.0) {
-						sum += temp;
-						occurence += 1;
-					}
+				ans.next();
+				temp = ans.getDouble(percent);
+				if (temp != -1.0) {
+					sum += temp;
+					occurence += 1;
 				}
 			}
 			catch(SQLException s) {
@@ -312,7 +310,7 @@ public class Prog3 {
 		while (true) {
 			System.out.println("What would you like to know about the database:");
 			System.out.println("1. The top 5 school of the four different tests.");
-			System.out.println("2. A trend of a school for percentage of students not tested.");
+			System.out.println("2. A trend of a school for percentage of students tested.");
 			System.out.println("3. The average of students passing a test from a school.");
 			System.out.println("Input either 1, 2, 3, or q if done: ");
 			temp = scan.next();

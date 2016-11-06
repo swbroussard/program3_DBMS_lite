@@ -233,12 +233,11 @@ public class Prog3 {
 			}
 		
 			try {
-				if (ans.next()) {
-					temp = ans.getDouble(percent);
-					if (temp != -1.0) {
-						sum += temp;
-						occurence += 1;
-					}
+				ans.next();
+				temp = ans.getDouble(percent);
+				if (temp != -1.0) {
+					sum += temp;
+					occurence += 1;
 				}
 			}
 			catch(SQLException s) {
