@@ -238,7 +238,7 @@ public class Prog3 {
 		
 		//TODO: choice two: Given each school during the four years; list if the
 		//      not tested percentage trend is strictly increasing, decreasing, or neither.
-		noTestTrend("Adams-Friendship El", stat);
+		noTestTrend("Wilmot El", stat);
 		
 		//TODO: choice three: for each school during the four years; show by average amount
 		//      of strictly increasing, decreasing, or about balanced.
