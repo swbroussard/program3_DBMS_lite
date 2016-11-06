@@ -157,7 +157,6 @@ public class Prog3 {
 		}
 		
 		try {
-			ans.next();
 			percentNotTested[0] = ans.getDouble("perNoTest");
 			System.out.println(percentNotTested[0]);
 		}

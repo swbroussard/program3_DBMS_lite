@@ -157,7 +157,15 @@ public class Prog3 {
 		}
 		
 		try {
-			ans.next();
+			ansMeta = ans.getMetaData();
+		}
+		catch(SQLException s) {
+			System.out.println("grabing meta data failed.");
+			s.printStackTrace();
+			System.exit(-1);
+		}
+		
+		try {
 			percentNotTested[0] = ans.getDouble("perNoTest");
 			System.out.println(percentNotTested[0]);
 		}
