@@ -129,11 +129,11 @@ public class Prog3 {
     |
     |  Parameters: String schlName - the user choice of school name
     |              Statement stat - Statement object to execute SQL queries
-    |              String distNum - district id
+    |              String distName - Name of school district
     |
     |  Returns: none
     *-------------------------------------------------------------------*/
-	private static void noTestTrend (String schlName, String distNum ,Statement stat) {
+	private static void noTestTrend (String schlName, String disc ,Statement stat) {
 		ResultSet ans = null;
 		//ResultSetMetaData ansMeta = null;
 		double[] percentNotTested = new double[4];
@@ -151,7 +151,7 @@ public class Prog3 {
 		
 		for (int m = 0; m < tables.length; m++) {
 			try {
-				ans = stat.executeQuery(comd.noTestPercent(schlName,distNum,tables[m]));
+				ans = stat.executeQuery(comd.noTestPercent(schlName,disc,tables[m]));
 			}
 			catch (SQLException s) {
 				System.out.println("SQL Query Failed.");
@@ -197,7 +197,7 @@ public class Prog3 {
 		
 	}
 	/*---------------------------------------------------------------------
-    |  Method: averagePercent
+    |  Method: noTestTrend
     |
     |  Purpose: user selects school name and outputs if the no test percent
     |           is increasing, decreasing, or neither.
@@ -207,11 +207,11 @@ public class Prog3 {
     |
     |  Parameters: String schlName - the user choice of school name
     |              Statement stat - Statement object to execute SQL queries
-    |              String distNum - district id
+    |              String dist - name of school district
     |
     |  Returns: none
     *-------------------------------------------------------------------*/
-	private static void averagePercent(String percent,String schoolName,String distNum,Statement stat) {
+	private static void averagePercent(String percent,String schoolName,String dist,Statement stat) {
 		ResultSet ans = null;
 		String[] tables = new String[4];
 		double sum = 0.0;
@@ -226,7 +226,7 @@ public class Prog3 {
 		
 		for (int m = 0; m < tables.length; m++) {
 			try {
-				ans = stat.executeQuery(comd.grabPercent(schoolName, distNum, tables[m], percent));
+				ans = stat.executeQuery(comd.grabPercent(schoolName, dist, tables[m], percent));
 			}
 			catch (SQLException s) {
 				System.out.println("SQL Query Failed.");
@@ -338,7 +338,7 @@ public class Prog3 {
 			}
 		
 			else if (temp.equals("2")) {
-				System.out.println("Please input district number:");
+				System.out.println("Please input district name:");
 				temp2 = scan.nextLine();
 				System.out.println("Please input name of school:");
 				temp = scan.nextLine();
@@ -352,7 +352,7 @@ public class Prog3 {
 			
 				System.out.println("Enter perMin (minimum percentage), perBasic (basic percentage), perPro (procient percentage), or perAdvan (Advance percentage):");
 				temp = scan.nextLine();
-				System.out.println("Please input district number:");
+				System.out.println("Please input district name:");
 				temp3=scan.nextLine();
 				System.out.println("Please input name of school:");
 				temp2 = scan.nextLine();
