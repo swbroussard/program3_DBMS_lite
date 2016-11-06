@@ -18,9 +18,7 @@ import java.util.*;
  |     Language: Java JE 1.8
  | Ex. Packages: 
  |                
- | Deficiencies: In the main function under the if statement for the second option,
- |               there are no checks for bad inputs of district number and 
- |               school name. Also in the 3 option is the same thing.
+ | Deficiencies: none as of right now
  *=======================================================================*/
 public class Prog3 {
 	
@@ -53,7 +51,6 @@ public class Prog3 {
 		tables[2] = "stevenwbroussard.WRCT_02_03";
 		tables[3] = "stevenwbroussard.WRCT_04_05";
 		
-		//going through all the tables
 		for (int j = 0; j < tables.length; j++) {
 			try {
 				System.out.println(tables[j]);
@@ -74,7 +71,6 @@ public class Prog3 {
 				System.exit(-1);
 			}
 		
-			//printing the column names
 			try {
 				for (int i = 1; i <= ansMetaData.getColumnCount(); i++) {
 					System.out.print(ansMetaData.getColumnName(i) + "\t");
@@ -89,7 +85,6 @@ public class Prog3 {
 			//new line after printing columns
 			System.out.println("");
 		
-			//prints out the top five schools per table
 			try {
 				for (int i = 0; ans.next() && i < 4; i++) {
 					if (!(ans.getString("schName").equals("NULL"))) {
@@ -154,7 +149,6 @@ public class Prog3 {
 		percentNotTested[2] = 0.0;
 		percentNotTested[3] = 0.0;
 		
-		//going through all the tables
 		for (int m = 0; m < tables.length; m++) {
 			try {
 				ans = stat.executeQuery(comd.noTestPercent(schlName,distNum,tables[m]));
@@ -165,7 +159,6 @@ public class Prog3 {
 				System.exit(-1);
 			}
 		
-			//grabs the not tested percent from the table
 			try {
 				if (ans.next()) {
 					percentNotTested[m] = ans.getDouble("perNoTest");
@@ -178,7 +171,6 @@ public class Prog3 {
 			}
 		}
 		
-		//checks if the array has percents that are decreasing, increasing or neither
 		if (percentNotTested[0] < percentNotTested[1] &&
 			percentNotTested[1] < percentNotTested[2] &&
 			percentNotTested[2] < percentNotTested[3]) {
@@ -232,7 +224,6 @@ public class Prog3 {
 		tables[2] = "stevenwbroussard.WRCT_02_03";
 		tables[3] = "stevenwbroussard.WRCT_04_05";
 		
-		//going through all the tables
 		for (int m = 0; m < tables.length; m++) {
 			try {
 				ans = stat.executeQuery(comd.grabPercent(schoolName, distNum, tables[m], percent));
@@ -243,7 +234,6 @@ public class Prog3 {
 				System.exit(-1);
 			}
 		
-			//grabs the user input percent from table and sums previous if not a NULL
 			try {
 				if (ans.next()) {
 					temp = ans.getDouble(percent);
@@ -330,13 +320,11 @@ public class Prog3 {
 			System.out.println("Input either 1, 2, 3, or q if done: ");
 			temp = scan.nextLine();
 		
-			//top five schools per table of chosen students passing test percents
 			if (temp.equals("1")) {
 				while (true) {
 					System.out.println("Enter perMin (minimum percentage), perBasic (basic percentage), perPro (procient percentage), or perAdvan (Advance percentage):");
 					temp = scan.nextLine();
 		
-					//checks if the input is correct
 					if (temp.equals("perMin") || temp.equals("perBasic") || temp.equals("perPro") || temp.equals("perAdvan")) {
 						//choice one: for each of the school years and the different percentages,
 						//list the top 5 highest percentage school in descending order.
@@ -387,9 +375,9 @@ public class Prog3 {
 			
 		}
 		
-		System.out.println("Thank you for using the School's DataBase. Have a good day.");
-		
 		//close all threads before exiting the program
+		
+		System.out.println("Thank you for using the School's DataBase. Have a good day.");
 		try {
 			stat.close();
 			dbConnection.close();

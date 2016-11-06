@@ -18,9 +18,7 @@ import java.util.*;
  |     Language: Java JE 1.8
  | Ex. Packages: 
  |                
- | Deficiencies: In the main function under the if statement for the second option,
- |               there are no checks for bad inputs of district number and 
- |               school name. Also in the 3 option is the same thing.
+ | Deficiencies: none as of right now
  *=======================================================================*/
 public class Prog3 {
 	

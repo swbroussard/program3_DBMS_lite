@@ -25,7 +25,6 @@ import java.util.*;
  ||
  ||  Class Methods: extractName
  ||                 createTables
- ||                 populateTable
  ||
  ||  Inst. Methods: none
  ||
