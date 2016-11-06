@@ -133,7 +133,7 @@ public class Prog3 {
     *-------------------------------------------------------------------*/
 	private static void noTestTrend (String schlName, Statement stat) {
 		ResultSet ans = null;
-		//ResultSetMetaData ansMeta = null;
+		ResultSetMetaData ansMeta = null;
 		double[] percentNotTested = new double[4];
 		String[] tables = new String[4];
 		
@@ -147,39 +147,24 @@ public class Prog3 {
 		percentNotTested[2] = 0.0;
 		percentNotTested[3] = 0.0;
 		
-		for (int m = 0; m < tables.length; m++) {
-			try {
-				ans = stat.executeQuery(comd.noTestPercent(schlName,tables[m]));
-			}
-			catch (SQLException s) {
-				System.out.println("SQL Query Failed.");
-				s.printStackTrace();
-				System.exit(-1);
-			}
-		
-			try {
-				ans.next();
-				percentNotTested[m] = ans.getDouble("perNoTest");
-			}
-			catch(SQLException s) {
-				System.out.println("Grabbing tuple by column name failed.");
-				s.printStackTrace();
-				System.exit(-1);
-			}
+		try {
+			ans = stat.executeQuery(comd.noTestPercent(schlName,tables[0]));
+		}
+		catch (SQLException s) {
+			System.out.println("SQL Query Failed.");
+			s.printStackTrace();
+			System.exit(-1);
 		}
 		
-		if (percentNotTested[0] < percentNotTested[1] &&
-			percentNotTested[1] < percentNotTested[2] &&
-			percentNotTested[2] < percentNotTested[3]) {
-			System.out.println("The noTest percent for " + schlName + " is increasing.");
+		try {
+			ans.next();
+			percentNotTested[0] = ans.getDouble("perNoTest");
+			System.out.println(percentNotTested[0]);
 		}
-		else if (percentNotTested[0] > percentNotTested[1] &&
-				 percentNotTested[1] > percentNotTested[2] &&
-				 percentNotTested[2] > percentNotTested[3]) {
-			System.out.println("The noTest percent for " + schlName + " is decreasing.");
-		}
-		else {
-			System.out.println("can not determined increasing or decreasing.");
+		catch(SQLException s) {
+			System.out.println("Grabbing tuple by column name failed.");
+			s.printStackTrace();
+			System.exit(-1);
 		}
 		
 		//release ResultSet object information
@@ -190,7 +175,7 @@ public class Prog3 {
 			System.out.println("Can not close ResultSet object.");
 			s.printStackTrace();
 			System.exit(-1);
-		}		
+		}
 		
 	}
 	

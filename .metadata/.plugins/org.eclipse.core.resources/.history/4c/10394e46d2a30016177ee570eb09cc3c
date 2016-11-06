@@ -133,7 +133,7 @@ public class Prog3 {
     *-------------------------------------------------------------------*/
 	private static void noTestTrend (String schlName, Statement stat) {
 		ResultSet ans = null;
-		//ResultSetMetaData ansMeta = null;
+		ResultSetMetaData ansMeta = null;
 		double[] percentNotTested = new double[4];
 		String[] tables = new String[4];
 		
