@@ -232,7 +232,7 @@ public class Prog3 {
 		
 			try {
 				ans.next();
-				temp = ans.getDouble(percent);
+				temp = ans.getDouble("perNoTest");
 				if (temp != -1.0) {
 					sum += temp;
 					occurence += 1;
