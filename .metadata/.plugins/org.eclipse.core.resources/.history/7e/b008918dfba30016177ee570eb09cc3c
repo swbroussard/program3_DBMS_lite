@@ -311,7 +311,7 @@ public class Prog3 {
 		
 		System.out.println("Welcome to the WRCT School's Database.");
 		
-		//make user input scanner
+		//TODO: make user input scanner
 		while (true) {
 			System.out.println("What would you like to know about the database:");
 			System.out.println("1. The top 5 school of the four different tests.");

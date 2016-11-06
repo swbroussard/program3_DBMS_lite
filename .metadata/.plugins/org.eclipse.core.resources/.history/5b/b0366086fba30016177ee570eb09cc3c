@@ -129,11 +129,10 @@ public class Prog3 {
     |
     |  Parameters: String schlName - the user choice of school name
     |              Statement stat - Statement object to execute SQL queries
-    |              String distName - Name of school district
     |
     |  Returns: none
     *-------------------------------------------------------------------*/
-	private static void noTestTrend (String schlName, String disc ,Statement stat) {
+	private static void noTestTrend (String schlName, Statement stat) {
 		ResultSet ans = null;
 		//ResultSetMetaData ansMeta = null;
 		double[] percentNotTested = new double[4];
@@ -151,7 +150,7 @@ public class Prog3 {
 		
 		for (int m = 0; m < tables.length; m++) {
 			try {
-				ans = stat.executeQuery(comd.noTestPercent(schlName,disc,tables[m]));
+				ans = stat.executeQuery(comd.noTestPercent(schlName,tables[m]));
 			}
 			catch (SQLException s) {
 				System.out.println("SQL Query Failed.");
@@ -207,11 +206,10 @@ public class Prog3 {
     |
     |  Parameters: String schlName - the user choice of school name
     |              Statement stat - Statement object to execute SQL queries
-    |              String dist - name of school district
     |
     |  Returns: none
     *-------------------------------------------------------------------*/
-	private static void averagePercent(String percent,String schoolName,String dist,Statement stat) {
+	private static void averagePercent(String percent,String schoolName, Statement stat) {
 		ResultSet ans = null;
 		String[] tables = new String[4];
 		double sum = 0.0;
@@ -226,7 +224,7 @@ public class Prog3 {
 		
 		for (int m = 0; m < tables.length; m++) {
 			try {
-				ans = stat.executeQuery(comd.grabPercent(schoolName, dist, tables[m], percent));
+				ans = stat.executeQuery(comd.grabPercent(schoolName, tables[m], percent));
 			}
 			catch (SQLException s) {
 				System.out.println("SQL Query Failed.");
@@ -275,7 +273,6 @@ public class Prog3 {
 		Scanner scan = new Scanner(System.in);
 		String temp = "";
 		String temp2 = "";
-		String temp3 = "";
 		
 		//calling the driver
 		try {
@@ -311,7 +308,7 @@ public class Prog3 {
 		
 		System.out.println("Welcome to the WRCT School's Database.");
 		
-		//make user input scanner
+		//TODO: make user input scanner
 		while (true) {
 			System.out.println("What would you like to know about the database:");
 			System.out.println("1. The top 5 school of the four different tests.");
@@ -338,29 +335,25 @@ public class Prog3 {
 			}
 		
 			else if (temp.equals("2")) {
-				System.out.println("Please input district name:");
-				temp2 = scan.nextLine();
 				System.out.println("Please input name of school:");
 				temp = scan.nextLine();
 			
 				//choice two: Given each school during the four years; list if the
 				//not tested percentage trend is strictly increasing, decreasing, or neither.
-				noTestTrend(temp, temp2, stat);
+				noTestTrend(temp, stat);
 			}
 		
 			else if (temp.equals("3")) {
 			
 				System.out.println("Enter perMin (minimum percentage), perBasic (basic percentage), perPro (procient percentage), or perAdvan (Advance percentage):");
 				temp = scan.nextLine();
-				System.out.println("Please input district name:");
-				temp3=scan.nextLine();
 				System.out.println("Please input name of school:");
 				temp2 = scan.nextLine();
 			
 				while (true) {
 					if (temp.equals("perMin") || temp.equals("perBasic") || temp.equals("perPro") || temp.equals("perAdvan")) {
 						//choice three: Average of percents for that school
-						averagePercent(temp,temp2,temp3,stat);
+						averagePercent(temp,temp2,stat);
 						break;
 					}
 					else {

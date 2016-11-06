@@ -203,14 +203,13 @@ public class SQLCommandLibrary {
     |
     |  Parameters: String schoolName - input of which schoool name
     |              String tableName - name of the table
-    |              String disctName - name of school district
     |
     |  Returns: String
     *-------------------------------------------------------------------*/
-	public String noTestPercent(String schoolName, String disctName, String tableName) {
+	public String noTestPercent(String schoolName, String tableName) {
 		String grabNoTestPer = "select perNoTest" +
 	                           " from " + tableName +
-	                           " where schName='" + schoolName + "' and distName='" + disctName + "'";
+	                           " where schName='" + schoolName + "'";
 		return grabNoTestPer;
 	}
 	
@@ -226,14 +225,13 @@ public class SQLCommandLibrary {
     |  Parameters: String schoolName - input of which school name
     |              String percent - input of which percents
     |              String tableName - name of the table
-    |              String dist - name of school district
     |
     |  Returns: String
     *-------------------------------------------------------------------*/
-	public String grabPercent(String schoolName, String dist, String tableName, String percent) {
+	public String grabPercent(String schoolName, String tableName, String percent) {
 		String grabNoTestPer = "select " + percent +
 	                           " from " + tableName +
-	                           " where schName='" + schoolName + "' and distName='" + dist + "'";
+	                           " where schName='" + schoolName + "'";
 		return grabNoTestPer;
 	}
 }
