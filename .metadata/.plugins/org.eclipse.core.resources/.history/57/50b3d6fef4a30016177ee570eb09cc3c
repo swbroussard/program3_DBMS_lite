@@ -326,6 +326,7 @@ public class Prog3 {
 						//choice one: for each of the school years and the different percentages,
 						//list the top 5 highest percentage school in descending order.
 						topFivePercentage(temp, stat);
+						scan.next();
 						break;
 					}
 					else {
