@@ -315,12 +315,12 @@ public class Prog3 {
 			System.out.println("2. A trend of a school for percentage of students not tested.");
 			System.out.println("3. The average of students passing a test from a school.");
 			System.out.println("Input either 1, 2, 3, or q if done: ");
-			temp = scan.nextLine();
+			temp = scan.next();
 		
 			if (temp.equals("1")) {
 				while (true) {
 					System.out.println("Enter perMin (minimum percentage), perBasic (basic percentage), perPro (procient percentage), or perAdvan (Advance percentage):");
-					temp = scan.nextLine();
+					temp = scan.next();
 		
 					if (temp.equals("perMin") || temp.equals("perBasic") || temp.equals("perPro") || temp.equals("perAdvan")) {
 						//choice one: for each of the school years and the different percentages,
@@ -336,24 +336,26 @@ public class Prog3 {
 		
 			else if (temp.equals("2")) {
 				System.out.println("Please input name of school:");
-				temp = scan.nextLine();
+				temp = scan.next();
 			
 				//choice two: Given each school during the four years; list if the
 				//not tested percentage trend is strictly increasing, decreasing, or neither.
 				noTestTrend(temp, stat);
+				scan.next();
 			}
 		
 			else if (temp.equals("3")) {
 			
 				System.out.println("Enter perMin (minimum percentage), perBasic (basic percentage), perPro (procient percentage), or perAdvan (Advance percentage):");
-				temp = scan.nextLine();
+				temp = scan.next();
 				System.out.println("Please input name of school:");
-				temp2 = scan.nextLine();
+				temp2 = scan.next();
 			
 				while (true) {
 					if (temp.equals("perMin") || temp.equals("perBasic") || temp.equals("perPro") || temp.equals("perAdvan")) {
 						//choice three: Average of percents for that school
 						averagePercent(temp,temp2,stat);
+						scan.next();
 						break;
 					}
 					else {
