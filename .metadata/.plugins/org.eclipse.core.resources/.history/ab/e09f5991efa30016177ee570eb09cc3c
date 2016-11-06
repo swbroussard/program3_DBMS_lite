@@ -265,6 +265,7 @@ public class Prog3 {
 	}
 	
 	//executing main program
+	@SuppressWarnings("resource")
 	public static void main(String[] vars){
 		Connection dbConnection = null;
 		Statement stat = null;

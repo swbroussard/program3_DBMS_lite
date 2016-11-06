@@ -1,6 +1,5 @@
 import java.sql.*;
 //import java.io.*;
-import java.util.*;
 
 /*=========================================================================
  |   Assignment:  Program #3: JDBC  
@@ -265,12 +264,9 @@ public class Prog3 {
 	}
 	
 	//executing main program
-	public static void main(String[] vars){
+	public static void main(String[] vars) {
 		Connection dbConnection = null;
 		Statement stat = null;
-		Scanner scan = new Scanner(System.in);
-		String temp = "";
-		String temp2 = "";
 		
 		//calling the driver
 		try {
@@ -304,67 +300,17 @@ public class Prog3 {
 			System.exit(-1);
 		}
 		
-		System.out.println("Welcome to the WRCT School's Database.");
-		
 		//TODO: make user input scanner
-		while (true) {
-			System.out.println("What would you like to know about the database:");
-			System.out.println("1. The top 5 school of the four different tests.");
-			System.out.println("2. A trend of a school for percentage of students tested.");
-			System.out.println("3. The average of students passing a test from a school.");
-			System.out.println("Input either 1, 2, 3, or q if done: ");
-			temp = scan.next();
+		//choice one: for each of the school years and the different percentages,
+		//list the top 5 highest percentage school in descending order.
+		//topFivePercentage("perBasic", stat);
 		
-			if (temp.equals("1")) {
-				while (true) {
-					System.out.println("Enter perMin (minimum percentage), perBasic (basic percentage), perPro (procient percentage), or perAdvan (Advance percentage):");
-					temp = scan.next();
+		//choice two: Given each school during the four years; list if the
+		//not tested percentage trend is strictly increasing, decreasing, or neither.
+		//noTestTrend("Adams-Friendship El", stat);
 		
-					if (temp.equals("perMin") || temp.equals("perBasic") || temp.equals("perPro") || temp.equals("perAdvan")) {
-						//choice one: for each of the school years and the different percentages,
-						//list the top 5 highest percentage school in descending order.
-						topFivePercentage(temp, stat);
-						break;
-					}
-					else {
-						System.out.println("Bad input. Please try again.");
-					}
-				}
-			}
-		
-			else if (temp.equals("2")) {
-				System.out.println("Please input name of school:");
-				temp = scan.next();
-			
-				//choice two: Given each school during the four years; list if the
-				//not tested percentage trend is strictly increasing, decreasing, or neither.
-				noTestTrend(temp, stat);
-			}
-		
-			else if (temp.equals("3")) {
-			
-				System.out.println("Enter perMin (minimum percentage), perBasic (basic percentage), perPro (procient percentage), or perAdvan (Advance percentage):");
-				temp = scan.next();
-				System.out.println("Please input name of school:");
-				temp2 = scan.next();
-			
-				while (true) {
-					if (temp.equals("perMin") || temp.equals("perBasic") || temp.equals("perPro") || temp.equals("perAdvan")) {
-						//choice three: Average of percents for that school
-						averagePercent(temp,temp2,stat);
-						break;
-					}
-					else {
-						System.out.println("Bad Input. Please input again.");
-					}
-				}
-			}
-			
-			else if (temp.equals("q")) {
-				break;
-			}
-			
-		}
+		//TODO: choice three: Average of percents for that school
+		averagePercent("perBasic","Adams-Friendship El",stat);
 		
 		//close all threads before exiting the program
 		try {

@@ -265,7 +265,7 @@ public class Prog3 {
 	}
 	
 	//executing main program
-	public static void main(String[] vars){
+	public static void main(String[] vars) {
 		Connection dbConnection = null;
 		Statement stat = null;
 		Scanner scan = new Scanner(System.in);
